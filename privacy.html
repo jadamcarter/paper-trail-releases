@@ -8,12 +8,12 @@
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f3f5f8; --card:#ffffff; --ink:#16130d; --blue:#2a4b6b; --blue-deep:#1e3852;
     --slate:#55606e; --faint:#8b95a3; --line:#e2e7ee;
-    --serif:'EB Garamond',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --serif:'EB Garamond',Georgia,serif; --sans:'Instrument Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -22,13 +22,13 @@
   .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:820px;margin:0 auto}
   .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
   .brand svg{width:28px;height:28px}
-  .brand b{font-family:var(--serif);font-weight:600;font-size:20px}
+  .brand b{font-family:var(--sans);font-weight:700;font-size:17.5px;letter-spacing:-.02em}
   .brand b em{font-style:normal;color:var(--blue)}
   .nav-in a.back{font-size:14px;color:var(--slate);text-decoration:none;font-weight:500}
   main{max-width:820px;margin:0 auto;padding:56px 28px 80px}
-  h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.5vw,42px);line-height:1.12;margin:0 0 6px}
+  h1{font-family:var(--sans);font-weight:650;font-size:clamp(30px,4.2vw,38px);line-height:1.1;letter-spacing:-.025em;margin:0 0 6px}
   .dated{color:var(--faint);font-size:13.5px;margin:0 0 36px}
-  h2{font-family:var(--serif);font-weight:500;font-size:25px;margin:44px 0 10px}
+  h2{font-family:var(--sans);font-weight:650;font-size:21px;letter-spacing:-.015em;margin:44px 0 10px}
   p,li{color:#2c3440;font-size:15.5px}
   ul{padding-left:22px}
   li{margin-bottom:8px}
@@ -45,11 +45,15 @@
 <nav>
   <div class="nav-in">
     <a class="brand" href="./" aria-label="Paper Trail">
-      <svg viewBox="0 0 58 58" fill="none" stroke="#2a4b6b" stroke-linejoin="round" aria-hidden="true">
-        <rect x="18" y="9" width="27" height="35" fill="#2a4b6b" stroke-width="1.8"/>
-        <rect x="12" y="14" width="27" height="35" fill="#ffffff" stroke-width="1.8"/>
-        <line x1="18" y1="25" x2="33" y2="25" stroke-width="1.5"/>
-        <line x1="18" y1="33" x2="33" y2="33" stroke-width="1.5"/>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="10" y="42" width="36" height="10" fill="#2a4b6b"/>
+        <rect x="10" y="32" width="36" height="10" fill="#35577a"/>
+        <rect x="10" y="22" width="26" height="10" fill="#2a4b6b"/>
+        <polygon points="46,32 46,52 37,42" fill="#1e3852"/>
+        <polygon points="10,22 10,42 19,32" fill="#1e3852"/>
+        <circle cx="42" cy="27" r="2.5" fill="#2a4b6b"/>
+        <circle cx="49" cy="27" r="2.5" fill="#2a4b6b"/>
+        <circle cx="56" cy="27" r="3.1" fill="#4a8c5a"/>
       </svg>
       <b>Paper <em>Trail</em></b>
     </a>

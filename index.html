@@ -12,13 +12,13 @@
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=EB+Garamond:wght@500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f3f5f8; --card:#ffffff; --ink:#16130d; --blue:#2a4b6b; --blue-deep:#1e3852;
     --slate:#55606e; --faint:#8b95a3; --line:#e2e7ee; --line-strong:#d2d9e3;
     --green:#4a8c5a; --green-ink:#3a6b45; --red:#b8503f; --red-ink:#9c3a2c; --red-bg:#f5e6e1;
-    --serif:'EB Garamond',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --serif:'EB Garamond',Georgia,serif; --sans:'Instrument Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -31,7 +31,7 @@
   .nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:1060px;margin:0 auto}
   .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
   .brand svg{width:30px;height:30px}
-  .brand b{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:0}
+  .brand b{font-family:var(--sans);font-weight:700;font-size:18.5px;letter-spacing:-.02em}
   .brand b em{font-style:normal;color:var(--blue)}
   .nav-links{display:flex;gap:26px;align-items:center;font-size:14px}
   .nav-links a{color:var(--slate);text-decoration:none;font-weight:500}
@@ -45,7 +45,7 @@
   .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
   @media(max-width:860px){.hero{grid-template-columns:1fr;gap:44px}}
   .eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
-  h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,5.2vw,56px);line-height:1.08;margin:14px 0 18px;letter-spacing:-.005em;text-wrap:balance}
+  h1{font-family:var(--sans);font-weight:650;font-size:clamp(36px,4.8vw,52px);line-height:1.05;margin:14px 0 18px;letter-spacing:-.03em;text-wrap:balance}
   .sub{font-size:17.5px;color:var(--slate);max-width:34em;margin:0 0 30px}
   .dl-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
   .dl{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;text-decoration:none;
@@ -87,13 +87,13 @@
   /* ---- sections ---- */
   section{padding:72px 0}
   section.tint{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,36px);line-height:1.15;margin:0 0 10px;letter-spacing:-.004em;text-wrap:balance}
+  h2{font-family:var(--sans);font-weight:650;font-size:clamp(26px,3.2vw,33px);line-height:1.12;margin:0 0 10px;letter-spacing:-.025em;text-wrap:balance}
   .lede{color:var(--slate);max-width:38em;margin:0 0 40px;font-size:16.5px}
 
   /* how it works */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
   @media(max-width:760px){.steps{grid-template-columns:1fr}}
-  .step .num{font-family:var(--serif);font-size:34px;color:var(--blue);font-weight:500}
+  .step .num{font-family:var(--sans);font-size:26px;color:var(--blue);font-weight:700;letter-spacing:-.02em}
   .step h3{font-size:16.5px;margin:6px 0 6px;font-weight:600}
   .step p{margin:0;font-size:14.5px;color:var(--slate)}
 
@@ -104,7 +104,7 @@
   .feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px}
   section.tint .feat{background:var(--paper)}
   .feat .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
-  .feat h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:8px 0 7px}
+  .feat h3{font-family:var(--sans);font-weight:600;font-size:16.5px;margin:8px 0 7px;letter-spacing:-.01em}
   .feat p{margin:0;font-size:14px;color:var(--slate);line-height:1.55}
   .also{margin-top:26px;font-size:13.5px;color:var(--faint)}
 
@@ -142,11 +142,15 @@
 <nav>
   <div class="nav-in">
     <a class="brand" href="#top" aria-label="Paper Trail">
-      <svg viewBox="0 0 58 58" fill="none" stroke="#2a4b6b" stroke-linejoin="round" aria-hidden="true">
-        <rect x="18" y="9" width="27" height="35" fill="#2a4b6b" stroke-width="1.8"/>
-        <rect x="12" y="14" width="27" height="35" fill="#ffffff" stroke-width="1.8"/>
-        <line x1="18" y1="25" x2="33" y2="25" stroke-width="1.5"/>
-        <line x1="18" y1="33" x2="33" y2="33" stroke-width="1.5"/>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="10" y="42" width="36" height="10" fill="#2a4b6b"/>
+        <rect x="10" y="32" width="36" height="10" fill="#35577a"/>
+        <rect x="10" y="22" width="26" height="10" fill="#2a4b6b"/>
+        <polygon points="46,32 46,52 37,42" fill="#1e3852"/>
+        <polygon points="10,22 10,42 19,32" fill="#1e3852"/>
+        <circle cx="42" cy="27" r="2.5" fill="#2a4b6b"/>
+        <circle cx="49" cy="27" r="2.5" fill="#2a4b6b"/>
+        <circle cx="56" cy="27" r="3.1" fill="#4a8c5a"/>
       </svg>
       <b>Paper <em>Trail</em></b>
     </a>
