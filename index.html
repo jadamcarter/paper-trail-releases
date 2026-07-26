@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paper Trail — know where every paper stands</title>
-<meta name="description" content="Paper Trail is a desktop app for academics with manuscripts out for review. It signs in to your journals, reads each paper's status off the dashboard, and puts the lot on one page — along with the drafts, books, referee reports, comments and grant deadlines that make up the rest of the desk.">
-<meta property="og:title" content="Paper Trail — know where every paper stands">
-<meta property="og:description" content="A desktop app that signs in to your journals and reads each manuscript's status off the dashboard: where each paper stands, when a decision is plausibly due, and the polite way to chase one that's overdue.">
+<title>Paper Trail — track every submission, write the next paper</title>
+<meta name="description" content="Paper Trail is a desktop app for academics. It signs in to your journals and reads each manuscript's status off the dashboard — and it's a place to write the next paper: a quiet Markdown editor with Zotero citations one @ away, exports to Word and LaTeX-typeset PDF through your own templates, and a References section that builds itself.">
+<meta property="og:title" content="Paper Trail — track every submission, write the next paper">
+<meta property="og:description" content="A desktop app that knows where every manuscript stands — and gives you a quiet, Byword-style editor to write the next one, with Zotero citations, pandoc exports through your own templates, and blind-review copies one click away.">
 <meta property="og:image" content="https://jadamcarter.github.io/paper-trail-releases/icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -179,7 +179,8 @@
     </a>
     <div class="nav-links">
       <a href="#how">How it works</a>
-      <a href="#features">Features</a>
+      <a href="#features">Tracking</a>
+      <a href="#write">Writing</a>
       <a href="#desk">The desk</a>
       <a href="#integrations">Integrations</a>
       <a href="#privacy">Privacy</a>
@@ -191,12 +192,13 @@
 <header id="top" class="wrap">
   <div class="hero">
     <div>
-      <div class="eyebrow">For academics with papers under review</div>
-      <h1>Know where every paper stands.</h1>
-      <p class="sub">Paper Trail is a desktop app that signs in to your journals and reads each manuscript's
-        status straight off the dashboard, so where every paper stands — and when a decision is plausibly
-        due — sits on one page. And when the news comes, it helps with what's next: where to send the paper,
-        and a first draft already in that journal's house style.</p>
+      <div class="eyebrow">For academics — papers under review, and papers still to write</div>
+      <h1>Track every submission. Write the next paper.</h1>
+      <p class="sub">Paper Trail signs in to your journals and reads each manuscript's status straight off the
+        dashboard, so where every paper stands — and when a decision is plausibly due — sits on one page.
+        And now the desk writes as well as it tracks: a quiet Markdown editor with your Zotero library one
+        <b>@</b> away, exports to Word and LaTeX-typeset PDF through your own templates, and a blind-review
+        copy one click before you submit.</p>
       <div class="dl-row">
         <a class="dl" id="dlMac" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Mac<small>macOS 12+ · universal</small></a>
         <a class="dl alt" id="dlWin" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows<small>Windows 10+</small></a>
@@ -310,11 +312,62 @@
   </div>
 </section>
 
-<section id="desk">
+<section id="write">
+  <div class="wrap">
+    <h2>Write the paper here too.</h2>
+    <p class="lede">Drafts is a writing studio inside the tracker: plain Markdown files in your own iCloud
+      Drive, a calm Byword-style page to write them on, and pandoc underneath so what comes out the other
+      end is a properly typeset paper — citations resolved, references built, house style applied.</p>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">The editor</div>
+        <h3>A quiet page that knows what markdown means</h3>
+        <p>One centred column on warm paper, the markdown marks fading into the page as you type. Headings
+          become a clickable outline; ⌘F finds and replaces; typewriter scrolling and a focus mode keep the
+          current paragraph under your eyes. Type <b>@</b> and your Zotero library completes the citation;
+          paste a DOI and the reference is fetched into Zotero and cited on the spot. Snapshots accumulate
+          quietly as you write, so any hour of work can be got back.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc" style="background:#fbfaf8">
+            <div style="color:#a9aeb6"># </div>
+            <div style="font-size:13px;color:#191c1f;margin-top:-17px;padding-left:14px">The Shape of the Argument</div>
+            <div class="dm-l" style="color:#3f4348;margin-top:8px">As <span style="color:#3a76c4">@smith2021</span> argues, the regress stops<br>where the <span style="color:#a9aeb6">**</span><span style="color:#191c1f">reasons</span><span style="color:#a9aeb6">**</span> do.<span style="color:#3a76c4">[^1]</span></div>
+            <div class="dm-l" style="color:#a9aeb6;margin-top:6px">[^1]: <span style="color:#3f4348">Pace the usual reading.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">The exports</div>
+        <h3>From Markdown to a typeset paper</h3>
+        <p>Export to HTML, Word, or PDF via LaTeX. Citations typed as @keys come out as Author (Year) with a
+          full References section — the bibliography is pulled from Zotero at export time, so it's never
+          stale. Drop in your own templates once — a Word reference document, a pandoc LaTeX template, a CSL
+          style — and every export lands in your house style. When it's time to submit, <b>Prepare
+          submission</b> checks the word count against the target journal's limit and produces the
+          anonymized PDF for blind review.</p>
+        <div class="mini draft-mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-t">The Shape of the Argument</div>
+            <div class="dm-a">A. Writer · 26 July 2026</div>
+            <div class="dm-l">…as Smith (2021) argues, the regress stops where the <b>reasons</b> do.¹</div>
+            <div class="dm-s">References</div>
+            <div class="dm-l">Smith, J. 2021. “Reasons All the Way Down.” <i>Mind</i> 130 (2): 411–29.</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">PDF · LaTeX</span><span class="fmt">Word</span><span class="fmt">HTML</span><span class="fmt">Anonymized</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="also">Drafts are ordinary .md files in iCloud Drive › Paper Trail › Drafts — they sync, open in
+      any editor, and are never locked inside the app. When a draft becomes a real project, “→ pipeline”
+      makes it a paper you're writing, with live word counts against the journal you're aiming at.</p>
+  </div>
+</section>
+
+<section id="desk" class="tint">
   <div class="wrap">
     <h2>The rest of the desk, while you're at it.</h2>
     <p class="lede">Submissions are the visible part of the job, but not most of it. Below your cards sit six
-      tiles — Writing, Owed, Grants, Plan, Paper ideas, Notes — each showing a live count and a quiet warning
+      tiles — Writing, Owed, Grants, Plan, Drafts, Notes — each showing a live count and a quiet warning
       dot when a deadline is getting close, so a glance at the strip is a glance at the week.</p>
     <div class="grid">
       <div class="feat"><div class="tag">Writing</div><h3>The papers you haven't submitted yet</h3><p>Attach each
@@ -334,21 +387,22 @@
         with stages that follow the funder's own process rather than a generic pipeline. Deadlines get an extra
         thirty-day warning — grant deadlines being what they are — and each card keeps the working folder and the
         funder's portal one click away.</p></div>
-      <div class="feat"><div class="tag">Paper ideas</div><h3>The notebook before the pipeline</h3><p>Papers that
-        don't exist yet: a title and whatever you want to say to yourself about it, citations included. When one
-        becomes real, “→ pipeline” starts it as a paper you're writing — and the idea stays behind, linked to
-        what it became, so the thinking that started it is still there years later.</p></div>
+      <div class="feat"><div class="tag">Drafts</div><h3>The writing studio</h3><p>Papers written in the app
+        itself — plain Markdown files in your iCloud Drive, on a quiet Byword-style page, with Zotero one @
+        away and pandoc exports in your own house style. The whole story is <a href="#write">above</a>; the
+        tile is where the drafts live, next to everything they'll become.</p></div>
       <div class="feat"><div class="tag">Notes</div><h3>A scratch pad that files nothing</h3><p>One page for the
         things that don't belong anywhere — what an editor said on the phone, the argument you don't want to lose
         on the walk home. It saves itself as you type, and citations typed with @ read back as Author (Year),
         like a page of prose.</p></div>
     </div>
-    <p class="also">Entry forms live behind one ＋ Add menu; exports, backups and settings behind a single ⋯ — the
-      page below your cards stays quiet.</p>
+    <p class="also">Entry forms live behind one ＋ Add menu; exports, backups and settings behind a single ⋯ —
+      and ⌘K opens a palette that jumps to any paper, draft, report or grant by name. The page below your
+      cards stays quiet.</p>
   </div>
 </section>
 
-<section id="integrations" class="tint">
+<section id="integrations">
   <div class="wrap">
     <h2>It meets your other tools where they are.</h2>
     <p class="lede">A tracker earns its keep by talking to the things you already trust — your calendar, and your
@@ -361,10 +415,11 @@
         Mac only for now; on Windows, a one-click .ics export does the same by hand.</p></div>
       <div class="feat"><div class="tag">Zotero integration</div><h3>Your library, one @ away</h3>
         <p>Search your Zotero library from inside the app and open any paper in Zotero's own reader — highlights
-        stay in Zotero, where they belong. Better still, typing <b>@</b> in a Paper idea or in Notes looks up your
-        library as you type and cites as you pick: shown as Author (Year) while you read, stored as the Better
-        BibTeX citation key underneath — so a note is already valid Quarto or pandoc, ready to paste straight into
-        a draft. Needs Zotero with the free Better BibTeX plugin, and nothing ever leaves your computer.</p></div>
+        stay in Zotero, where they belong. Typing <b>@</b> in a draft or a note looks up your library as you type
+        and cites as you pick: Author (Year) while you read, the Better BibTeX citation key underneath. Paste a
+        DOI and the reference is fetched into Zotero and cited on the spot; at export time the bibliography is
+        pulled fresh, so the References section is never stale. Needs Zotero with the free Better BibTeX
+        plugin.</p></div>
     </div>
   </div>
 </section>
@@ -376,13 +431,14 @@
       <p class="lede">Paper Trail is a desktop app in the old-fashioned sense. There's no account to create and no server holding your submission history.</p>
       <ul>
         <li><b>Your logins never leave your device.</b> Journal passwords are encrypted into the operating system's secure storage (the Mac Keychain, or Windows's equivalent) and used only to sign in from your computer, the way you would.</li>
-        <li><b>Nothing is stored anywhere else.</b> Statuses go from the journal's page to your screen, and that's the whole journey. Delete the app and it's all gone.</li>
+        <li><b>Nothing is stored on anyone else's server.</b> Your tracking data is one plain JSON file, and your drafts are ordinary Markdown files — both kept in your own iCloud Drive when you have it (so a second Mac just works), on your disk when you don't. Delete the app and everything is still yours, readable, in Finder.</li>
         <li><b>Community data is opt-in, and you can read it first.</b> If, and only if, you switch it on, each concluded submission contributes one anonymous record to shared journal statistics. The record is reproduced here in full; there is nothing else.</li>
       </ul>
       <p class="fine">Paper Trail does not send your manuscript titles, manuscript IDs, co-author names, journal
         statuses or journal passwords to us. The app communicates directly with journal websites to retrieve
-        information. Our download, update and community-statistics providers may receive ordinary technical
-        connection data, as explained in the <a href="privacy.html">Privacy Notice</a>.</p>
+        information, and with doi.org only when you paste a DOI to import a reference. Our download, update and
+        community-statistics providers may receive ordinary technical connection data, as explained in the
+        <a href="privacy.html">Privacy Notice</a>.</p>
     </div>
     <div class="rec">
       <div class="cap">The entire record, verbatim</div>
