@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Paper Trail — an academic work studio</title>
-<meta name="description" content="Paper Trail is an academic work studio: a desktop app where you write the paper, send it, track it, and build the resubmission. A quiet Markdown editor with Zotero citations one @ away, exports to Word and LaTeX-typeset PDF through your own templates, journal statuses read straight off the dashboard, and a revision desk that produces the marked-up copy and the reply to the referees.">
+<meta name="description" content="Paper Trail is an academic work studio — from the first note to the proofs: a desktop app where you write the paper, send it, track it, and build the resubmission. A quiet Markdown editor with Zotero citations one @ away, exports to Word and LaTeX-typeset PDF through your own templates, journal statuses read straight off the dashboard, and a revision desk that produces the marked-up copy and the reply to the referees.">
 <meta property="og:title" content="Paper Trail — an academic work studio">
-<meta property="og:description" content="An academic work studio: a quiet, Byword-style editor with Zotero citations, pandoc exports through your own templates, a tracker that reads each journal status itself, and a revision desk that builds the marked-up copy and the reply to the referees.">
+<meta property="og:description" content="An academic work studio — from the first note to the proofs: a quiet, Byword-style editor with Zotero citations, pandoc exports through your own templates, a tracker that reads each journal status itself, and a revision desk that builds the marked-up copy and the reply to the referees.">
 <meta property="og:image" content="https://jadamcarter.github.io/paper-trail-releases/icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -190,9 +190,9 @@
         <rect x="10" y="22" width="26" height="10" fill="#2a4b6b"/>
         <polygon points="46,32 46,52 37,42" fill="#1e3852"/>
         <polygon points="10,22 10,42 19,32" fill="#1e3852"/>
-        <circle cx="42" cy="27" r="2.5" fill="#2a4b6b"/>
-        <circle cx="49" cy="27" r="2.5" fill="#2a4b6b"/>
-        <circle cx="56" cy="27" r="3.1" fill="#4a8c5a"/>
+        <circle cx="40" cy="25" r="3.5" fill="#2a4b6b"/>
+        <circle cx="48.2" cy="25" r="3.5" fill="#2a4b6b"/>
+        <circle cx="57.2" cy="25" r="4.4" fill="#4a8c5a"/>
       </svg>
       <b>Paper <em>Trail</em></b>
     </a>
@@ -277,7 +277,7 @@
       in between is invisible to every tool you own. Paper Trail follows one paper through all of it, and keeps
       the other obligations of the week beside it.</p>
     <div class="arc">
-      <div class="arc-s"><span class="arc-n"></span><h4>An idea</h4><p>A notebook for papers that don't exist yet, with citations already attached.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>An idea</h4><p>A note with citations attached from its first sentence — the paper before it has a name.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>A draft</h4><p>A calm editor that counts words the way your target journal counts them.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>Submitted</h4><p>Title page, anonymized copy, and the checks that catch what referees never see.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>Waiting</h4><p>The app signs in and reads the status, so you stop checking dashboards.</p></div>
@@ -451,9 +451,11 @@
         <div class="tag">The whole record</div>
         <h3>Every paper's biography</h3>
         <p>Each paper keeps its own history: where it went, what came back, how long it took, which journals have
-          declined it and when. The submitted PDF is filed alongside. When the decision is acceptance, a short
-          production checklist appears — proofs returned, copyright form, online first, in print — each step
-          stamped with the date you ticked it.</p>
+          declined it and when. The submitted PDF is filed alongside. When the decision is acceptance, the card runs
+          the proofs clock — when they arrived, when corrections are due, the proofing link or the attached PDF
+          one click away — beside a short production checklist: proofs returned, copyright form, online first,
+          in print, each stamped with the date you ticked it. And when a paper's story is done, one click
+          archives it: the record keeps, the desk clears.</p>
       </div>
     </div>
   </div>
@@ -514,30 +516,34 @@
 <section id="desk">
   <div class="wrap">
     <h2>And the rest of the week.</h2>
-    <p class="lede">Submissions are the visible part of the job and not most of it. Five tiles sit under your
+    <p class="lede">Submissions are the visible part of the job and not most of it. Seven tiles sit under your
       cards, each showing a live count and a quiet warning dot when something is getting close — so a glance at
       the strip is a glance at the week.</p>
     <div class="grid">
       <div class="feat"><div class="tag">Writing</div><h3>Every paper you're writing, one list</h3>
         <p>Start it here and it opens in the built-in editor, or attach a working copy that lives anywhere — a
         file, a folder, an Overleaf link — and it opens in whichever editor you chose. Word counts come off the
-        file itself, against the journal you're aiming at. A draft simply <i>is</i> a paper you're writing: it's
-        in this list from its first word.</p></div>
-      <div class="feat"><div class="tag">Books</div><h3>Books, at monograph scale</h3>
-        <p>The same idea for the long haul: attach the master file or the whole project folder, and “Work on
-        book” opens it where the book actually lives. Chapters, contracts and deadlines sit beside the papers
-        rather than in a different app.</p></div>
+        file itself, against the journal you're aiming at. Books run at the same scale: attach the master file
+        or the whole project folder, and chapters, contracts and delivery dates sit beside the papers.</p></div>
+      <div class="feat"><div class="tag">In review</div><h3>The trail, one tile up top</h3>
+        <p>The namesake sits second on the strip: a live count of what's under review and the next expected
+        decision, and a click drops you at the Submitted → Decision cards below — the app's own subject, never
+        reachable only by scroll.</p></div>
       <div class="feat"><div class="tag">Owed</div><h3>What you owe everyone else</h3>
         <p>Referee reports you've agreed to write, with the journal's own review platform one click away and its
         deadline in your calendar. And comments owed to colleagues and students: drop their paper in, mark it up
         in the app's own reader, and email it back with the annotated file attached.</p></div>
+      <div class="feat"><div class="tag">Special issues</div><h3>Issues you're editing</h3>
+        <p>Special issues and edited volumes, where the contribution list is the whole feature: who said yes,
+        who hasn't answered, what's arrived, what's finished — each contributor's deadline beside their name,
+        and the next invitation one chip away.</p></div>
       <div class="feat"><div class="tag">Grants</div><h3>Applications, idea to decision</h3>
         <p>Funder, scheme, deadline, the working copy, the portal — each application a card that moves from idea
         to submitted to a decision, with the deadline written into your calendar like everything else.</p></div>
-      <div class="feat"><div class="tag">Ideas</div><h3>Papers that don't exist yet</h3>
-        <p>A notebook for the ones that are still a sentence and a hunch, with citations attached as you think —
-        type <b>@</b> and your library completes it. When an idea is ready, promote it and it becomes a paper
-        you're writing, notes and all.</p></div>
+      <div class="feat"><div class="tag">Plan</div><h3>Where should this one go?</h3>
+        <p>Every journal in one place — word limits, acceptance rates, typical decision times, each figure
+        linked to its source. Pick one of your drafts, see where its length fits, grey out the journals that
+        already said no, and set the target the editor counts against.</p></div>
       <div class="feat"><div class="tag">Notes</div><h3>A scratch pad that files nothing</h3>
         <p>One page that's always there for the thought you don't want to lose and don't want to organise.
         Citations work here too. It saves itself and asks nothing of you.</p></div>
@@ -595,7 +601,7 @@
     </div>
     <div class="rec">
       <div class="cap">The entire record, verbatim</div>
-      <code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-07","app":"0.18.0"}</code>
+      <code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-07","app":"0.20.1"}</code>
       <div class="note">It carries no name and no title, and no precise dates either: days are rounded, and only the month is kept. Off by default.</div>
     </div>
   </div>
@@ -604,7 +610,8 @@
 <section id="download">
   <div class="wrap dlband">
     <h2>Get Paper Trail</h2>
-    <p class="lede">Free while it's in beta. It installs in seconds and keeps itself up to date afterwards.</p>
+    <p class="lede">Free while it's in beta. It installs in seconds, a six-question wizard lays your studio out —
+      every answer saved the moment it's given — and it keeps itself up to date afterwards.</p>
     <div class="dl-row">
       <a class="dl" id="dlMac2" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Mac<small>macOS 12+ · universal</small></a>
       <a class="dl alt" id="dlWin2" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows<small>Windows 10+</small></a>
