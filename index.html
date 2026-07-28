@@ -182,6 +182,7 @@
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#features">Tracking</a>
+      <a href="#revision">Revisions</a>
       <a href="#write">Writing</a>
       <a href="#desk">The desk</a>
       <a href="#integrations">Integrations</a>
@@ -314,7 +315,59 @@
   </div>
 </section>
 
-<section id="write">
+<section id="revision" class="next">
+  <div class="wrap">
+    <h2>A revise-and-resubmit is three documents, not one.</h2>
+    <p class="lede">The revised paper, a copy with the changes marked, and a reply that answers every point in
+      the referees' own numbering. Paper Trail keeps the three in one place — and builds two of them for you.</p>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">The reply</div>
+        <h3>Answer each point at the moment you fix it</h3>
+        <p>The decision letter arrives as a wall of text; Paper Trail splits it into the points it actually
+          makes — the editor's letter, Referee A, Referee C — each one tickable, each with room for the line you'd
+          write back. Those lines <i>are</i> the reply. Tick the last one and the whole document is on your
+          clipboard as LaTeX or Markdown, numbered exactly as the referees numbered themselves, ready to paste
+          into Overleaf. Points you haven't answered come out plainly marked, so nothing goes back
+          half-finished by accident.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-s">Referee A</div>
+            <div class="dm-l"><b>✓ A.1</b> &nbsp;The central argument in §2 needs more support.</div>
+            <div class="dm-l" style="color:#6a7076;font-style:italic">Rewritten in §3 — the objection is now met head on.</div>
+            <div class="dm-l"><b>○ A.2</b> &nbsp;The example on page 7 doesn't do the work claimed for it.</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">4 of 9 answered</span><span class="fmt">LaTeX</span><span class="fmt">Markdown</span><span class="fmt">Word</span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">The marked-up copy</div>
+        <h3>Changes highlighted, without marking them by hand</h3>
+        <p>Most journals want a copy showing what changed, and keeping one by hand is how resubmissions go
+          wrong. Give Paper Trail the version you submitted and the version you're revising and it typesets
+          one: additions underlined, deletions struck through. Drop an Overleaf <i>Source</i> zip and it finds
+          the main document itself — bibliography, class file and figures included, because the comparison has
+          to compile. A paper written in Paper Trail needs nothing dropped at all: the version you sent is
+          already in its own history. Markdown, Quarto, LaTeX and Word all go through the same machinery.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-l">Trust is transmitted in a way that is
+              <span style="color:#1a4fd6;text-decoration:underline">not at all</span> straightforwardly
+              testimonial. We argue that the framework
+              <span style="color:#c0392b;text-decoration:line-through">settles the matter</span><span style="color:#1a4fd6;text-decoration:underline">clarifies it without settling it</span>.</div>
+            <div class="dm-s" style="color:#1a4fd6;text-decoration:underline">A section added in revision</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">as submitted</span><span class="fmt">being revised</span><span class="fmt">changes-marked.pdf</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="also">The paper itself can live wherever you actually write: in Paper Trail, in a file anywhere on
+      your Mac, or at a link — Overleaf, a Google Doc. And one line answers the only question that matters at
+      the deadline: <b>ready to resubmit?</b> paper, marked-up copy, reply — which of the three is still missing.</p>
+  </div>
+</section>
+
+<section id="write" class="next">
   <div class="wrap">
     <h2>Write the paper here too.</h2>
     <p class="lede">Drafts is a writing studio inside the tracker: plain Markdown files in your own iCloud
@@ -371,9 +424,59 @@
         </div>
       </div>
     </div>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">Lenses over the page</div>
+        <h3>See what you've actually written</h3>
+        <p>Switch on a lens and the page colours what you asked about, nothing else: adverbs, hedges and
+          intensifiers, passive constructions, nominalizations, filler, a word you've used twice in one
+          paragraph. Sentences that have got away from you shade as they pass thirty words, and again at
+          forty-five. Colour only — nothing moves, nothing reflows, the caret stays exactly where it was.</p>
+        <p>One lens is on by default because the mistake it catches is silent: a citation with a full stop
+          welded to it — <b>@williams2020.</b> — inside a footnote. Pandoc renders that as <i>nothing</i> and drops
+          its reference from the bibliography without a warning. Paper Trail underlines it in red as you type,
+          and “Prepare submission” counts them before you send the paper anywhere.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc" style="background:#fbfaf8">
+            <div class="dm-l" style="color:#3f4348">It is <span style="color:#9a4fb5">very clearly</span> the case that this
+              <span style="color:#2f7d6b">assumption</span> is <span style="color:#9a4fb5">arguably</span> a
+              <span style="color:#2f7d6b">nominalization</span>.<span style="color:#3a76c4">^[</span>See
+              <span style="color:#3a76c4;text-decoration:underline wavy #e0484b">@carter2020.</span><span style="color:#3a76c4">]</span></div>
+          </div>
+          <div class="fmt-row"><span class="fmt">adverbs</span><span class="fmt">hedges</span><span class="fmt">passive</span><span class="fmt">filler</span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">The paper beside the paper</div>
+        <h3>Everything you need open at once</h3>
+        <p>Write and read the typeset version side by side, scrolling together. Open the paper you're replying to
+          in a reading pane in the same window, instead of a PDF covering what you're writing. A rail down the
+          side lists your sections with a word count on each — a four-thousand-word limit is a structural
+          problem, and this is where you see which section caused it — or lists every work you've cited, with a
+          warning on any citekey Zotero can no longer find.</p>
+        <p>Word counts follow each journal's own stated rule, read from what the journal actually says:
+          <i>Analysis</i>'s 4,000 includes the notes, <i>Episteme</i>'s 12,000 includes the notes and the
+          references. The footer names the journals your paper has just grown out of. And <b>History</b> shows the
+          paper's growth curve, compares any past version word by word, and will mark everything written since a
+          chosen moment right there in the page.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-s">Sections</div>
+            <div class="dm-l">1. Introduction <span style="float:right;color:#6a7076">1,240</span></div>
+            <div class="dm-l">2. The regress <span style="float:right;color:#6a7076">3,410</span></div>
+            <div class="dm-l">3. Objections <span style="float:right;color:#6a7076">890</span></div>
+          </div>
+          <div class="fmt-row"><span class="fmt">8,412 words</span><span class="fmt">🎯 Ergo — 1,588 to spare</span><span class="fmt">too long now for Analysis</span></div>
+        </div>
+      </div>
+    </div>
     <p class="also">Drafts are ordinary .md files in iCloud Drive › Paper Trail › Drafts — they sync, open in
-      any editor, and are never locked inside the app. And a draft simply <i>is</i> a paper you're writing:
-      it sits in the Writing pipeline from its first word, with live counts against the journal you're aiming at.</p>
+      any editor, and are never locked inside the app. Because they sync, the editor also watches for the copy on
+      your other Mac: if a paper has moved on since you opened it, the save is refused and you're shown both
+      versions rather than quietly overwriting an afternoon's work. And a draft simply <i>is</i> a paper you're
+      writing: it sits in the Writing pipeline from its first word, with live counts against the journal you're
+      aiming at. ⌘B and ⌘I do what you expect, lists carry their own markers down, ⌥⌘F writes a footnote, and
+      ⌘Z still reaches back through every one of them.</p>
   </div>
 </section>
 
@@ -426,11 +529,19 @@
         Mac only for now; on Windows, a one-click .ics export does the same by hand.</p></div>
       <div class="feat"><div class="tag">Zotero integration</div><h3>Your library, one @ away</h3>
         <p>Search your Zotero library from inside the app and open any paper in Zotero's own reader — highlights
-        stay in Zotero, where they belong. Typing <b>@</b> in a draft or a note looks up your library as you type
-        and cites as you pick: Author (Year) while you read, the Better BibTeX citation key underneath. Paste a
-        DOI and the reference is fetched into Zotero and cited on the spot; at export time the bibliography is
-        pulled fresh, so the References section is never stale. Needs Zotero with the free Better BibTeX
-        plugin.</p></div>
+        stay in Zotero, where they belong. Search results say <i>before</i> you click whether the item actually
+        has a PDF attached, and when it hasn't, one button looks for a legal open-access copy instead. Typing
+        <b>@</b> in a draft or a note looks up your library as you type and cites as you pick: Author (Year)
+        while you read, the Better BibTeX citation key underneath. Paste a DOI and the reference is fetched into
+        Zotero and cited on the spot; at export time the bibliography is pulled fresh, so the References section
+        is never stale. Needs Zotero with the free Better BibTeX plugin.</p>
+        <p style="margin-top:11px">And when the paper isn't in your library yet: type <b>@</b> and a name that
+        isn't there, and instead of the completer simply giving up it offers
+        to go and look: a Crossref search, right in the popover. Pick the paper and it's saved into Zotero and
+        cited in the sentence you were already writing — the pasted-DOI trick, without needing to have found the
+        DOI. There's a search box in the Zotero panel for browsing rather than citing, too. Google Scholar and
+        PhilPapers can't be searched from inside an app — neither offers a way in — so those two open in your
+        browser with the query already filled, where your own Zotero connector does the saving.</p></div>
     </div>
   </div>
 </section>
@@ -453,7 +564,7 @@
     </div>
     <div class="rec">
       <div class="cap">The entire record, verbatim</div>
-      <code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-07","app":"0.4.2"}</code>
+      <code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-07","app":"0.18.0"}</code>
       <div class="note">It carries no name and no title, and no precise dates either: days are rounded, and only the month is kept. Off by default.</div>
     </div>
   </div>
