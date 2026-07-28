@@ -160,6 +160,23 @@
   footer a{color:var(--slate)}
 .theme-dots{display:flex;gap:7px;margin-top:10px;justify-content:center}
 .theme-dots span{width:15px;height:15px;border-radius:50%;border:1px solid rgba(30,41,59,.18);display:inline-block}
+
+  /* ---- the arc of a paper ---- */
+  .arc{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:34px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  @media(max-width:900px){.arc{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.arc{grid-template-columns:repeat(2,1fr)}}
+  .arc-s{padding:18px 16px 20px;border-right:1px solid var(--line);position:relative}
+  .arc-s:last-child{border-right:0}
+  @media(max-width:900px){.arc-s:nth-child(3n){border-right:0}}
+  @media(max-width:560px){.arc-s:nth-child(2n){border-right:0}}
+  .arc-n{width:9px;height:9px;border-radius:50%;background:var(--blue);display:block;margin-bottom:11px}
+  .arc-s:nth-child(4) .arc-n{background:var(--green)}
+  .arc-s h4{margin:0 0 5px;font-family:var(--sans);font-size:14.5px;font-weight:650;letter-spacing:-.01em}
+  .arc-s p{margin:0;font-size:13px;color:var(--slate);line-height:1.5}
+  .arc-cap{margin-top:16px;font-size:13.5px;color:var(--faint)}
+  /* a plain two-column band, for sections that aren't ".next" */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:6px}
+  @media(max-width:820px){.duo{grid-template-columns:1fr;gap:38px}}
 </style>
 </head>
 <body>
@@ -180,12 +197,11 @@
       <b>Paper <em>Trail</em></b>
     </a>
     <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Tracking</a>
-      <a href="#revision">Revisions</a>
-      <a href="#write">Writing</a>
+      <a href="#write">Write</a>
+      <a href="#send">Send</a>
+      <a href="#track">Track</a>
+      <a href="#revise">Revise</a>
       <a href="#desk">The desk</a>
-      <a href="#integrations">Integrations</a>
       <a href="#privacy">Privacy</a>
       <a class="cta" href="#download">Download</a>
     </div>
@@ -195,13 +211,12 @@
 <header id="top" class="wrap">
   <div class="hero">
     <div>
-      <div class="eyebrow">For academics — papers under review, and papers still to write</div>
-      <h1>Track every submission. Write the next paper.</h1>
-      <p class="sub">Paper Trail signs in to your journals and reads each manuscript's status straight off the
-        dashboard, so where every paper stands — and when a decision is plausibly due — sits on one page.
-        And now the desk writes as well as it tracks: a quiet Markdown editor with your Zotero library one
-        <b>@</b> away, exports to Word and LaTeX-typeset PDF through your own templates, and a blind-review
-        copy one click before you submit.</p>
+      <div class="eyebrow">For academics — from the first note to the proofs</div>
+      <h1>The whole life of a paper, in one place.</h1>
+      <p class="sub">Write it, send it, wait for it, revise it, resubmit it. Paper Trail is a writing studio, a
+        tracker that signs in to your journals and reads each status itself, and a revision desk that builds
+        your reply to the referees and the marked-up copy the journal asks for. One app, on your own machine,
+        for the parts of the job that nobody teaches you to keep track of.</p>
       <div class="dl-row">
         <a class="dl" id="dlMac" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Mac<small>macOS 12+ · universal</small></a>
         <a class="dl alt" id="dlWin" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows<small>Windows 10+</small></a>
@@ -228,7 +243,7 @@
             <span style="text-align:right"><span class="n">Decision</span><span class="d">~26 Jul · in 14 days</span></span>
           </div>
         </div>
-        <div class="m-foot"><span>≈10% acceptance · ~5.4 months to first decision</span><a href="#features">details ›</a></div>
+        <div class="m-foot"><span>≈10% acceptance · ~5.4 months to first decision</span><a href="#track">details ›</a></div>
       </div>
 
       <div class="mock overdue">
@@ -254,138 +269,38 @@
   </div>
 </header>
 
-<section id="how" class="tint">
+<section id="arc" class="tint">
   <div class="wrap">
-    <h2>Stop making the rounds of journal dashboards.</h2>
-    <p class="lede">ScholarOne logs you out more or less as a matter of principle. So checking becomes a ritual: sign in, squint at a table, sign in somewhere else. Paper Trail runs the ritual for you.</p>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><h3>Track a paper</h3><p>Type the title as it appears on the journal's site and pick the journal. The app finds the cover, the manuscript ID, and the submission date on its own.</p></div>
-      <div class="step"><div class="num">2</div><h3>Add your journal login, once</h3><p>Each paper's card asks for its journal login the first time. It's encrypted into your device's own secure storage, and it stays on your machine.</p></div>
-      <div class="step"><div class="num">3</div><h3>Click “Refresh all”</h3><p>The app signs in, reads every status, and redraws each paper's trail. If anything has changed since you last looked, you'll get a notification.</p></div>
+    <h2>A paper doesn't end at "submitted".</h2>
+    <p class="lede">It starts as a note to yourself and ends, years later, in proofs — and most of what happens
+      in between is invisible to every tool you own. Paper Trail follows one paper through all of it, and keeps
+      the other obligations of the week beside it.</p>
+    <div class="arc">
+      <div class="arc-s"><span class="arc-n"></span><h4>An idea</h4><p>A notebook for papers that don't exist yet, with citations already attached.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>A draft</h4><p>A calm editor that counts words the way your target journal counts them.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>Submitted</h4><p>Title page, anonymized copy, and the checks that catch what referees never see.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>Waiting</h4><p>The app signs in and reads the status, so you stop checking dashboards.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>Revising</h4><p>The referees' points, your replies, and a marked-up copy built for you.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>In print</h4><p>Proofs, copyright form, online-first — ticked off and dated.</p></div>
     </div>
+    <p class="arc-cap">Everything below is one of those six, in the order it actually happens.</p>
   </div>
 </section>
-
-<section id="features">
-  <div class="wrap">
-    <h2>The questions are always the same.</h2>
-    <p class="lede">How long has it been? When should I expect to hear? Is this journal slow, or is it me? While a paper is out, every card on the page has an answer.</p>
-    <div class="grid">
-      <div class="feat"><div class="tag">The trail</div><h3>A living timeline</h3><p>Submission to review to decision, drawn as one line. The marker pulses gently while reviewers have the paper, sits still through the administrative longueurs, and turns green, amber, or red when the decision lands.</p></div>
-      <div class="feat"><div class="tag">Expected decisions</div><h3>An honest countdown</h3><p>Your submission date plus the journal's average review time gives a date you might plausibly hear by, and the card counts down to it. When that date slips past it counts up instead, in red — and offers to draft the polite chase-up email, manuscript ID and dates already filled in. Nobody enjoys writing those, which is presumably why we put them off.</p></div>
-      <div class="feat"><div class="tag">Journal facts</div><h3>Sourced, not folklore</h3><p>Acceptance rates and wait times are mostly folklore, passed along at conferences. The card shows published figures instead: publisher metrics where journals release them, community surveys where they don't, side by side when they disagree, each linked to its source.</p></div>
-      <div class="feat"><div class="tag">The journey</div><h3>Every paper's biography</h3><p>Papers get around. When one is rejected and resubmitted, the rejection carries forward, so the card shows the full route: where the paper has been, and how long each stop took.</p></div>
-    </div>
-    <p class="also">There's also co-author bylines, CSV export of your submission history, decision dates as a calendar feed, and quiet automatic updates.</p>
-  </div>
-</section>
-
-<section id="next" class="tint next">
-  <div class="wrap">
-    <h2>The paper comes back. Then the real work.</h2>
-    <p class="lede">Acceptance is the exception; more often the useful question is <em>where next?</em> Paper Trail carries you into the next attempt while the reasons for it are still fresh — and takes the formatting off your hands.</p>
-    <div class="show">
-      <div class="show-col">
-        <div class="tag">Where next?</div>
-        <h3>Plan the next submission</h3>
-        <p>Every journal you might try sits in one list — word limit, acceptance rate and typical decision time side by side, sortable by speed or by selectivity. Anywhere that's already turned the paper down is greyed out.</p>
-        <div class="mini plan-mini" aria-hidden="true">
-          <div class="pm pm-h"><span>Journal</span><span>Words</span><span>Decision</span><span></span></div>
-          <div class="pm"><span>Analysis</span><span>4,000</span><span>≈5 mo</span><span class="pm-b">Draft</span></div>
-          <div class="pm"><span>Ergo</span><span>10,000</span><span>≈3 mo</span><span class="pm-b">Draft</span></div>
-          <div class="pm pm-out"><span>Noûs</span><span>—</span><span>declined</span><span></span></div>
-        </div>
-      </div>
-      <div class="show-col">
-        <div class="tag">In house style</div>
-        <h3>Start the draft, already formatted</h3>
-        <p>Settle on a journal and open a starter document in its house style: title, abstract, section headings and sample citations in the journal's own referencing style. Save it as Word, LaTeX, Markdown or Quarto — the fiddly part done before you've written a word.</p>
-        <div class="mini draft-mini" aria-hidden="true">
-          <div class="dm-doc">
-            <div class="dm-t">Your Title Here</div>
-            <div class="dm-a">[removed for anonymous review]</div>
-            <div class="dm-l"><b>Abstract.</b> This is my abstract…</div>
-            <div class="dm-s">1. Introduction</div>
-            <div class="dm-l">…is not sufficient for knowledge (Gettier 1963).</div>
-          </div>
-          <div class="fmt-row"><span class="fmt">Word</span><span class="fmt">LaTeX</span><span class="fmt">Markdown</span><span class="fmt">Quarto</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="revision" class="next">
-  <div class="wrap">
-    <h2>A revise-and-resubmit is three documents, not one.</h2>
-    <p class="lede">The revised paper, a copy with the changes marked, and a reply that answers every point in
-      the referees' own numbering. Paper Trail keeps the three in one place — and builds two of them for you.</p>
-    <div class="show">
-      <div class="show-col">
-        <div class="tag">The reply</div>
-        <h3>Answer each point at the moment you fix it</h3>
-        <p>The decision letter arrives as a wall of text; Paper Trail splits it into the points it actually
-          makes — the editor's letter, Referee A, Referee C — each one tickable, each with room for the line you'd
-          write back. Those lines <i>are</i> the reply. Tick the last one and the whole document is on your
-          clipboard as LaTeX or Markdown, numbered exactly as the referees numbered themselves, ready to paste
-          into Overleaf. Points you haven't answered come out plainly marked, so nothing goes back
-          half-finished by accident.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="dm-doc">
-            <div class="dm-s">Referee A</div>
-            <div class="dm-l"><b>✓ A.1</b> &nbsp;The central argument in §2 needs more support.</div>
-            <div class="dm-l" style="color:#6a7076;font-style:italic">Rewritten in §3 — the objection is now met head on.</div>
-            <div class="dm-l"><b>○ A.2</b> &nbsp;The example on page 7 doesn't do the work claimed for it.</div>
-          </div>
-          <div class="fmt-row"><span class="fmt">4 of 9 answered</span><span class="fmt">LaTeX</span><span class="fmt">Markdown</span><span class="fmt">Word</span></div>
-        </div>
-      </div>
-      <div class="show-col">
-        <div class="tag">The marked-up copy</div>
-        <h3>Changes highlighted, without marking them by hand</h3>
-        <p>Most journals want a copy showing what changed, and keeping one by hand is how resubmissions go
-          wrong. Give Paper Trail the version you submitted and the version you're revising and it typesets
-          one: additions underlined, deletions struck through. Drop an Overleaf <i>Source</i> zip and it finds
-          the main document itself — bibliography, class file and figures included, because the comparison has
-          to compile. A paper written in Paper Trail needs nothing dropped at all: the version you sent is
-          already in its own history. Markdown, Quarto, LaTeX and Word all go through the same machinery.</p>
-        <div class="mini" aria-hidden="true">
-          <div class="dm-doc">
-            <div class="dm-l">Trust is transmitted in a way that is
-              <span style="color:#1a4fd6;text-decoration:underline">not at all</span> straightforwardly
-              testimonial. We argue that the framework
-              <span style="color:#c0392b;text-decoration:line-through">settles the matter</span><span style="color:#1a4fd6;text-decoration:underline">clarifies it without settling it</span>.</div>
-            <div class="dm-s" style="color:#1a4fd6;text-decoration:underline">A section added in revision</div>
-          </div>
-          <div class="fmt-row"><span class="fmt">as submitted</span><span class="fmt">being revised</span><span class="fmt">changes-marked.pdf</span></div>
-        </div>
-      </div>
-    </div>
-    <p class="also">The paper itself can live wherever you actually write: in Paper Trail, in a file anywhere on
-      your Mac, or at a link — Overleaf, a Google Doc. And one line answers the only question that matters at
-      the deadline: <b>ready to resubmit?</b> paper, marked-up copy, reply — which of the three is still missing.</p>
-  </div>
-</section>
-
 <section id="write" class="next">
   <div class="wrap">
-    <h2>Write the paper here too.</h2>
-    <p class="lede">Drafts is a writing studio inside the tracker: plain Markdown files in your own iCloud
-      Drive, a calm Byword-style page to write them on, and pandoc underneath so what comes out the other
-      end is a properly typeset paper — citations resolved, references built, house style applied.</p>
+    <h2>Write it.</h2>
+    <p class="lede">Not a text box bolted onto a tracker. A writing studio: plain Markdown files in your own
+      iCloud Drive, a quiet page to write them on, and pandoc underneath — so what comes out is a properly
+      typeset paper with its citations resolved and its references built.</p>
     <div class="show">
       <div class="show-col">
-        <div class="tag">The editor</div>
-        <h3>A quiet page that knows what markdown means</h3>
-        <p>One centred column on warm paper, the markdown marks fading into the page as you type. Headings
-          become a clickable outline; ⌘F finds and replaces; typewriter scrolling and a focus mode keep the
-          current paragraph under your eyes. Type <b>@</b> and your Zotero library completes the citation;
-          paste a DOI and the reference is fetched into Zotero and cited on the spot. Snapshots accumulate
-          quietly as you write, so any hour of work can be got back. And the page itself is yours to dress:
-          six writing themes — the default warm paper, an iA Writer white (real iA Writer Quattro, bundled),
-          typewriter ivory, a green-phosphor terminal, a serif midnight, Solarized — each restyling the whole
-          editor, chrome and all. The app around it has a night-mode switch of its own: follow the system,
-          or pin it dark or light.</p>
+        <div class="tag">The page</div>
+        <h3>Somewhere calm to think</h3>
+        <p>One centred column on warm paper, the markdown marks fading as you type. Typewriter scrolling and a
+          focus mode keep the current paragraph under your eyes; ⛶ takes it truly full screen. ⌘B and ⌘I do what
+          you expect, lists carry their markers down, ⌥⌘F writes a footnote and renumbers the paper around it —
+          and ⌘Z still reaches back through every one of them. Six committed looks, from warm paper to
+          green-phosphor terminal, each restyling the whole editor.</p>
         <div class="mini" aria-hidden="true">
           <div class="dm-doc" style="background:#fbfaf8">
             <div style="color:#a9aeb6"># </div>
@@ -404,38 +319,16 @@
         </div>
       </div>
       <div class="show-col">
-        <div class="tag">The exports</div>
-        <h3>From Markdown to a typeset paper</h3>
-        <p>Export to HTML, Word, or PDF via LaTeX. Citations typed as @keys come out as Author (Year) with a
-          full References section — the bibliography is pulled from Zotero at export time, so it's never
-          stale. Drop in your own templates once — a Word reference document, a pandoc LaTeX template, a CSL
-          style — and every export lands in your house style. When it's time to submit, <b>Prepare
-          submission</b> checks the word count against the target journal's limit and produces the
-          anonymized PDF for blind review.</p>
-        <div class="mini draft-mini" aria-hidden="true">
-          <div class="dm-doc">
-            <div class="dm-t">The Shape of the Argument</div>
-            <div class="dm-a">A. Writer · 26 July 2026</div>
-            <div class="dm-l">…as Smith (2021) argues, the regress stops where the <b>reasons</b> do.¹</div>
-            <div class="dm-s">References</div>
-            <div class="dm-l">Smith, J. 2021. “Reasons All the Way Down.” <i>Mind</i> 130 (2): 411–29.</div>
-          </div>
-          <div class="fmt-row"><span class="fmt">PDF · LaTeX</span><span class="fmt">Word</span><span class="fmt">HTML</span><span class="fmt">Anonymized</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="show">
-      <div class="show-col">
         <div class="tag">Lenses over the page</div>
         <h3>See what you've actually written</h3>
-        <p>Switch on a lens and the page colours what you asked about, nothing else: adverbs, hedges and
-          intensifiers, passive constructions, nominalizations, filler, a word you've used twice in one
-          paragraph. Sentences that have got away from you shade as they pass thirty words, and again at
-          forty-five. Colour only — nothing moves, nothing reflows, the caret stays exactly where it was.</p>
-        <p>One lens is on by default because the mistake it catches is silent: a citation with a full stop
-          welded to it — <b>@williams2020.</b> — inside a footnote. Pandoc renders that as <i>nothing</i> and drops
-          its reference from the bibliography without a warning. Paper Trail underlines it in red as you type,
-          and “Prepare submission” counts them before you send the paper anywhere.</p>
+        <p>Switch on a lens and the page colours what you asked about and nothing else: adverbs, hedges and
+          intensifiers, passive constructions, nominalizations, filler, a word used twice in one paragraph.
+          Sentences shade as they pass thirty words, and again at forty-five. Colour only — nothing moves,
+          nothing reflows, the caret stays where it was.</p>
+        <p>One lens is on by default, because the mistake it catches is silent: a citation with a full stop
+          welded to it — <b>@williams2020.</b> — inside a footnote. Pandoc renders that as <i>nothing</i> and
+          drops its reference from the bibliography without a warning. Paper Trail underlines it in red as you
+          type.</p>
         <div class="mini" aria-hidden="true">
           <div class="dm-doc" style="background:#fbfaf8">
             <div class="dm-l" style="color:#3f4348">It is <span style="color:#9a4fb5">very clearly</span> the case that this
@@ -446,19 +339,19 @@
           <div class="fmt-row"><span class="fmt">adverbs</span><span class="fmt">hedges</span><span class="fmt">passive</span><span class="fmt">filler</span></div>
         </div>
       </div>
+    </div>
+    <div class="show" style="margin-top:44px">
       <div class="show-col">
-        <div class="tag">The paper beside the paper</div>
-        <h3>Everything you need open at once</h3>
+        <div class="tag">Everything open at once</div>
+        <h3>The paper beside the paper</h3>
         <p>Write and read the typeset version side by side, scrolling together. Open the paper you're replying to
           in a reading pane in the same window, instead of a PDF covering what you're writing. A rail down the
           side lists your sections with a word count on each — a four-thousand-word limit is a structural
-          problem, and this is where you see which section caused it — or lists every work you've cited, with a
-          warning on any citekey Zotero can no longer find.</p>
+          problem, and this is where you see which section caused it — or every work you've cited, with a warning
+          on any citekey Zotero can no longer find.</p>
         <p>Word counts follow each journal's own stated rule, read from what the journal actually says:
-          <i>Analysis</i>'s 4,000 includes the notes, <i>Episteme</i>'s 12,000 includes the notes and the
-          references. The footer names the journals your paper has just grown out of. And <b>History</b> shows the
-          paper's growth curve, compares any past version word by word, and will mark everything written since a
-          chosen moment right there in the page.</p>
+          <i>Analysis</i>'s 4,000 includes the notes; <i>Episteme</i>'s 12,000 includes the notes and the
+          references. The footer names the journals your paper has just grown out of.</p>
         <div class="mini" aria-hidden="true">
           <div class="dm-doc">
             <div class="dm-s">Sections</div>
@@ -466,85 +359,222 @@
             <div class="dm-l">2. The regress <span style="float:right;color:#6a7076">3,410</span></div>
             <div class="dm-l">3. Objections <span style="float:right;color:#6a7076">890</span></div>
           </div>
-          <div class="fmt-row"><span class="fmt">8,412 words</span><span class="fmt">🎯 Ergo — 1,588 to spare</span><span class="fmt">too long now for Analysis</span></div>
+          <div class="fmt-row"><span class="fmt">8,412 words</span><span class="fmt">🎯 Ergo · 1,588 spare</span><span class="fmt">too long for Analysis</span><span class="fmt">+412 today</span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">Nothing lost</div>
+        <h3>Every hour of work, recoverable</h3>
+        <p>Snapshots accumulate quietly as you write. <b>History</b> draws the paper's growth curve, compares any
+          past version word by word, and will mark everything written since a chosen moment right there in the
+          page — which is also how the marked-up copy for a resubmission gets made.</p>
+        <p>Drafts are ordinary .md files in iCloud Drive, so they sync between your Macs — which is why the editor
+          watches for the other copy. If a paper has moved on since you opened it, the save is refused and you're
+          shown both versions rather than quietly overwriting an afternoon's work.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-l">This sentence has been <span style="color:#2c8a4b;background:#e6f4ea">rewritten in revision</span>,
+              and <span style="color:#c0453f;text-decoration:line-through">this clause removed</span>.</div>
+            <div class="dm-l" style="color:#6a7076;margin-top:8px">11 May · 8,102 words → today · 8,412</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">snapshots</span><span class="fmt">compare</span><span class="fmt">growth curve</span><span class="fmt">restore</span></div>
         </div>
       </div>
     </div>
-    <p class="also">Drafts are ordinary .md files in iCloud Drive › Paper Trail › Drafts — they sync, open in
-      any editor, and are never locked inside the app. Because they sync, the editor also watches for the copy on
-      your other Mac: if a paper has moved on since you opened it, the save is refused and you're shown both
-      versions rather than quietly overwriting an afternoon's work. And a draft simply <i>is</i> a paper you're
-      writing: it sits in the Writing pipeline from its first word, with live counts against the journal you're
-      aiming at. ⌘B and ⌘I do what you expect, lists carry their own markers down, ⌥⌘F writes a footnote, and
-      ⌘Z still reaches back through every one of them.</p>
   </div>
 </section>
 
-<section id="desk" class="tint">
+<section id="send" class="next tint">
   <div class="wrap">
-    <h2>The rest of the desk, while you're at it.</h2>
-    <p class="lede">Submissions are the visible part of the job, but not most of it. Below your cards sit five
-      tiles — Writing, Owed, Grants, Plan, Notes — each showing a live count and a quiet warning
-      dot when a deadline is getting close, so a glance at the strip is a glance at the week.</p>
-    <div class="grid">
-      <div class="feat"><div class="tag">Writing</div><h3>Every paper you're writing, one list</h3><p>Write it
-        right here — “✍️ Write in Paper Trail” starts a draft in the built-in editor — or attach an outside working
-        copy (a file anywhere, or an Overleaf link) that opens in whatever editor you choose, Paper Trail included
-        for Markdown files. Word counts read themselves either way; pick a target journal, and when the day comes,
-        one click moves the paper across to tracking with the as-submitted version snapshotted.</p></div>
-      <div class="feat"><div class="tag">Books</div><h3>Books, at monograph scale</h3><p>The same idea for the long
-        haul: attach the master file or the whole project folder, and “Work on book” opens it in whichever editor
-        you picked for that book — saving happens right where the book lives. Word counts sum the chapters;
-        delivery dates warn you a month out.</p></div>
-      <div class="feat"><div class="tag">Owed</div><h3>What you owe everyone else</h3><p>Referee reports you've
-        promised journals and papers colleagues are waiting on, with the same countdowns as your own work and a
-        yearly tally for the CV. PDFs annotate right inside the app; a paper shared as a Word or Google Docs link
-        opens in the shared document itself; either way, one click drafts the email that sends your comments
-        back.</p></div>
-      <div class="feat"><div class="tag">Grants</div><h3>Applications, idea to decision</h3><p>One card per bid,
-        with stages that follow the funder's own process rather than a generic pipeline. Deadlines get an extra
-        thirty-day warning — grant deadlines being what they are — and each card keeps the working folder and the
-        funder's portal one click away.</p></div>
-      <div class="feat"><div class="tag">Notes</div><h3>A scratch pad that files nothing</h3><p>One page for the
-        things that don't belong anywhere — what an editor said on the phone, the argument you don't want to lose
-        on the walk home. It saves itself as you type, and citations typed with @ read back as Author (Year),
-        like a page of prose.</p></div>
+    <h2>Send it.</h2>
+    <p class="lede">Deciding where a paper goes, and getting it out of the door in the shape the journal wants —
+      the fiddly, forgettable part where submissions go wrong.</p>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">Where next?</div>
+        <h3>Choose the journal on the evidence</h3>
+        <p>Every journal you might try in one list: word limit, acceptance rate and typical decision time side by
+          side, sortable by speed or by selectivity, with submission windows and moratoria noted. Anywhere that's
+          already turned this paper down is greyed out, because the app keeps a ledger of that.</p>
+        <div class="mini plan-mini" aria-hidden="true">
+          <div class="pm pm-h"><span>Journal</span><span>Words</span><span>Decision</span><span></span></div>
+          <div class="pm"><span>Analysis</span><span>4,000</span><span>≈5 mo</span><span class="pm-b">Draft</span></div>
+          <div class="pm"><span>Ergo</span><span>10,000</span><span>≈3 mo</span><span class="pm-b">Draft</span></div>
+          <div class="pm pm-out"><span>Noûs</span><span>—</span><span>declined</span><span></span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">Out of the door</div>
+        <h3>In house style, anonymized, checked</h3>
+        <p>Open a starter document in the journal's own house style — title, abstract, headings, sample citations
+          in its referencing style — as Word, LaTeX, Markdown or Quarto. Export through your own templates: a Word
+          reference document, a pandoc LaTeX template, a CSL style. Then <b>Prepare submission</b> counts the
+          words by that journal's rule, tells you which citations don't resolve in Zotero, flags the silent
+          footnote-citation bug, and produces the anonymized PDF and a separate title page for blind review.</p>
+        <div class="mini draft-mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-t">The Shape of the Argument</div>
+            <div class="dm-a">[removed for anonymous review]</div>
+            <div class="dm-l">…as Smith (2021) argues, the regress stops where the <b>reasons</b> do.¹</div>
+            <div class="dm-s">References</div>
+            <div class="dm-l">Smith, J. 2021. “Reasons All the Way Down.” <i>Mind</i> 130 (2): 411–29.</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">PDF · LaTeX</span><span class="fmt">Word</span><span class="fmt">Anonymized</span><span class="fmt">Title page</span></div>
+        </div>
+      </div>
     </div>
-    <p class="also">Entry forms live behind one ＋ Add menu; exports, backups and settings behind a single ⋯ —
-      and ⌘K opens a palette that jumps to any paper, draft, report or grant by name. The page below your
-      cards stays quiet.</p>
   </div>
 </section>
 
-<section id="integrations">
+<section id="track" class="next">
   <div class="wrap">
-    <h2>It meets your other tools where they are.</h2>
-    <p class="lede">A tracker earns its keep by talking to the things you already trust — your calendar, and your
-      reference manager. Both connections run entirely on your machine.</p>
-    <div class="grid">
-      <div class="feat"><div class="tag">Calendar integration</div><h3>Your deadlines, in your actual calendar</h3>
-        <p>Every date Paper Trail knows — revision deadlines, expected decisions, referee reports, ready-by dates,
-        grant deadlines — written into a calendar you choose and kept there: change a due date and its event moves,
-        remove the paper and the event goes with it. Pick a calendar that syncs and the dates reach your phone too.
-        Mac only for now; on Windows, a one-click .ics export does the same by hand.</p></div>
-      <div class="feat"><div class="tag">Zotero integration</div><h3>Your library, one @ away</h3>
-        <p>Search your Zotero library from inside the app and open any paper in Zotero's own reader — highlights
-        stay in Zotero, where they belong. Search results say <i>before</i> you click whether the item actually
-        has a PDF attached, and when it hasn't, one button looks for a legal open-access copy instead. Typing
-        <b>@</b> in a draft or a note looks up your library as you type and cites as you pick: Author (Year)
-        while you read, the Better BibTeX citation key underneath. Paste a DOI and the reference is fetched into
-        Zotero and cited on the spot; at export time the bibliography is pulled fresh, so the References section
-        is never stale. Needs Zotero with the free Better BibTeX plugin.</p>
-        <p style="margin-top:11px">And when the paper isn't in your library yet: type <b>@</b> and a name that
-        isn't there, and instead of the completer simply giving up it offers
-        to go and look: a Crossref search, right in the popover. Pick the paper and it's saved into Zotero and
-        cited in the sentence you were already writing — the pasted-DOI trick, without needing to have found the
-        DOI. There's a search box in the Zotero panel for browsing rather than citing, too. Google Scholar and
-        PhilPapers can't be searched from inside an app — neither offers a way in — so those two open in your
-        browser with the query already filled, where your own Zotero connector does the saving.</p></div>
+    <h2>Then wait, without checking.</h2>
+    <p class="lede">ScholarOne logs you out more or less as a matter of principle, so checking becomes a ritual:
+      sign in, squint at a table, sign in somewhere else, learn nothing. Paper Trail runs the ritual for you —
+      and this is the part no other tool does.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Track a paper</h3><p>Type the title as it appears on the journal's site and pick the journal. The app finds the cover, the manuscript ID and the submission date itself.</p></div>
+      <div class="step"><div class="num">2</div><h3>Add the login, once</h3><p>Each card asks for its journal login the first time. It's encrypted into your device's own secure storage and never leaves the machine.</p></div>
+      <div class="step"><div class="num">3</div><h3>Click “Refresh all”</h3><p>It signs in, reads every status, and redraws each paper's trail. If anything moved since you last looked, you're told — by notification, or by email if you'd rather.</p></div>
+    </div>
+    <div class="duo" style="margin-top:44px">
+      <div class="show-col">
+        <div class="tag">What the card knows</div>
+        <h3>An honest countdown, and its sources</h3>
+        <p>A living timeline from submission to expected decision, with the stage it's actually at and how long
+          each stage took. The expected date comes from real acceptance rates and reported wait times, each figure
+          linked to where it came from — sourced, not folklore — so “36 days past average” means something. When
+          it is genuinely late, the app drafts the status inquiry for you.</p>
+      </div>
+      <div class="show-col">
+        <div class="tag">The whole record</div>
+        <h3>Every paper's biography</h3>
+        <p>Each paper keeps its own history: where it went, what came back, how long it took, which journals have
+          declined it and when. The submitted PDF is filed alongside. When the decision is acceptance, a short
+          production checklist appears — proofs returned, copyright form, online first, in print — each step
+          stamped with the date you ticked it.</p>
+      </div>
     </div>
   </div>
 </section>
+
+<section id="revise" class="next tint">
+  <div class="wrap">
+    <h2>Revise it.</h2>
+    <p class="lede">A revise-and-resubmit is three documents, not one: the revised paper, a copy with the changes
+      marked, and a reply that answers every point in the referees' own numbering. Paper Trail keeps the three
+      together — and builds two of them for you.</p>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">The reply</div>
+        <h3>Answer each point where you fix it</h3>
+        <p>The decision letter arrives as a wall of text; Paper Trail splits it into the points it actually makes
+          — the editor's letter, Referee A, Referee C — each tickable, each with room for the line you'd write
+          back. Those lines <i>are</i> the reply. Tick the last one and the whole document is on your clipboard as
+          LaTeX or Markdown, numbered exactly as the referees numbered themselves, ready to paste into Overleaf.
+          Points you haven't answered come out plainly marked, so nothing goes back half-finished by accident.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-s">Referee A</div>
+            <div class="dm-l"><b>✓ A.1</b> &nbsp;The central argument in §2 needs more support.</div>
+            <div class="dm-l" style="color:#6a7076;font-style:italic">Rewritten in §3 — the objection is now met head on.</div>
+            <div class="dm-l"><b>○ A.2</b> &nbsp;The example on page 7 doesn't do the work claimed for it.</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">4 of 9 answered</span><span class="fmt">LaTeX</span><span class="fmt">Markdown</span><span class="fmt">Word</span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">The marked-up copy</div>
+        <h3>Changes highlighted, without marking them by hand</h3>
+        <p>Most journals want a copy showing what changed, and keeping one by hand is how resubmissions go wrong.
+          Give Paper Trail the version you submitted and the version you're revising and it typesets one:
+          additions underlined, deletions struck through. Drop an Overleaf <i>Source</i> zip and it finds the main
+          document itself — bibliography, class file and figures included, because the comparison has to compile.
+          A paper written in Paper Trail needs nothing dropped at all: the version you sent is already in its own
+          history. Markdown, Quarto, LaTeX and Word all go through the same machinery.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc">
+            <div class="dm-l">Trust is transmitted in a way that is
+              <span style="color:#1a4fd6;text-decoration:underline">not at all</span> straightforwardly
+              testimonial. We argue that the framework
+              <span style="color:#c0392b;text-decoration:line-through">settles the matter</span><span style="color:#1a4fd6;text-decoration:underline">clarifies it without settling it</span>.</div>
+            <div class="dm-s" style="color:#1a4fd6;text-decoration:underline">A section added in revision</div>
+          </div>
+          <div class="fmt-row"><span class="fmt">as submitted</span><span class="fmt">being revised</span><span class="fmt">changes-marked.pdf</span><span class="fmt">ready?</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="also">The paper itself can live wherever you actually write: in Paper Trail, in a file anywhere on
+      your Mac, or at a link — Overleaf, a Google Doc. And one line answers the only question that matters at the
+      deadline: <b>ready to resubmit?</b> paper, marked-up copy, reply — which of the three is still missing.</p>
+  </div>
+</section>
+
+<section id="desk">
+  <div class="wrap">
+    <h2>And the rest of the week.</h2>
+    <p class="lede">Submissions are the visible part of the job and not most of it. Five tiles sit under your
+      cards, each showing a live count and a quiet warning dot when something is getting close — so a glance at
+      the strip is a glance at the week.</p>
+    <div class="grid">
+      <div class="feat"><div class="tag">Writing</div><h3>Every paper you're writing, one list</h3>
+        <p>Start it here and it opens in the built-in editor, or attach a working copy that lives anywhere — a
+        file, a folder, an Overleaf link — and it opens in whichever editor you chose. Word counts come off the
+        file itself, against the journal you're aiming at. A draft simply <i>is</i> a paper you're writing: it's
+        in this list from its first word.</p></div>
+      <div class="feat"><div class="tag">Books</div><h3>Books, at monograph scale</h3>
+        <p>The same idea for the long haul: attach the master file or the whole project folder, and “Work on
+        book” opens it where the book actually lives. Chapters, contracts and deadlines sit beside the papers
+        rather than in a different app.</p></div>
+      <div class="feat"><div class="tag">Owed</div><h3>What you owe everyone else</h3>
+        <p>Referee reports you've agreed to write, with the journal's own review platform one click away and its
+        deadline in your calendar. And comments owed to colleagues and students: drop their paper in, mark it up
+        in the app's own reader, and email it back with the annotated file attached.</p></div>
+      <div class="feat"><div class="tag">Grants</div><h3>Applications, idea to decision</h3>
+        <p>Funder, scheme, deadline, the working copy, the portal — each application a card that moves from idea
+        to submitted to a decision, with the deadline written into your calendar like everything else.</p></div>
+      <div class="feat"><div class="tag">Ideas</div><h3>Papers that don't exist yet</h3>
+        <p>A notebook for the ones that are still a sentence and a hunch, with citations attached as you think —
+        type <b>@</b> and your library completes it. When an idea is ready, promote it and it becomes a paper
+        you're writing, notes and all.</p></div>
+      <div class="feat"><div class="tag">Notes</div><h3>A scratch pad that files nothing</h3>
+        <p>One page that's always there for the thought you don't want to lose and don't want to organise.
+        Citations work here too. It saves itself and asks nothing of you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="integrations" class="tint">
+  <div class="wrap">
+    <h2>It meets your tools where they are.</h2>
+    <p class="lede">A tool like this earns its keep by talking to the things you already trust — your reference
+      manager, your calendar, your typesetting. All of it runs on your machine.</p>
+    <div class="grid">
+      <div class="feat"><div class="tag">Zotero</div><h3>Your library, one @ away</h3>
+        <p>Search your library from inside the app and open any paper in Zotero's own reader — highlights stay in
+        Zotero, where they belong. Results tell you <i>before</i> you click whether the item actually has a PDF
+        attached, and when it hasn't, one button looks for a legal open-access copy instead. Typing <b>@</b> in a
+        draft completes from your library and cites as you pick: Author (Year) while you read, the Better BibTeX
+        key underneath. Paste a DOI and the reference is fetched into Zotero and cited on the spot.</p>
+        <p style="margin-top:11px">And when the paper isn't in your library yet, an <b>@</b> that finds nothing
+        offers to go and look — a Crossref search in the same popover, which saves the paper into Zotero and cites
+        it in the sentence you were already writing. Google Scholar and PhilPapers can't be searched from inside
+        an app, so those open in your browser with the query filled in, where your own connector does the
+        saving.</p></div>
+      <div class="feat"><div class="tag">Calendar &amp; typesetting</div><h3>Deadlines where you'll see them</h3>
+        <p>Every date the app knows — revision deadlines, expected decisions, referee reports, ready-by dates,
+        grant deadlines — written into a calendar you choose and kept there: change a due date and its event
+        moves, remove the paper and the event goes too. Pick a calendar that syncs and the dates reach your phone.
+        Mac only for now; on Windows a one-click .ics export does the same by hand.</p>
+        <p style="margin-top:11px">Typesetting runs on pandoc and your own LaTeX installation, so exports look
+        like your papers rather than like an app's idea of a paper. The marked-up copy for a resubmission uses
+        latexdiff, which comes with MacTeX and TeX Live.</p></div>
+    </div>
+    <p class="also">Needs Zotero with the free Better BibTeX plugin for citations, and pandoc for exports — the
+      app tells you plainly which of them it can find, and what still works when it can't.</p>
+  </div>
+</section>
+
 
 <section id="privacy" class="band">
   <div class="wrap privacy">
