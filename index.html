@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Paper Trail — an academic work studio</title>
-<meta name="description" content="Paper Trail is an academic work studio — from the first note to the proofs: a desktop app where you write the paper, send it, track it, and build the resubmission. A quiet Markdown editor with Zotero citations one @ away, exports to Word and LaTeX-typeset PDF through your own templates, journal statuses read straight off the dashboard, and a revision desk that produces the marked-up copy and the reply to the referees.">
+<meta name="description" content="Paper Trail is an academic work studio — from the first note to the proofs: a desktop app where you write the paper, give the talks, send it, track it, and build the resubmission. A quiet Markdown editor with Zotero citations one @ away, exports to Word and LaTeX-typeset PDF through your own templates, slide decks that export to Beamer, reveal.js, PowerPoint and a Tufte handout, journal statuses read straight off the dashboard, and a revision desk that produces the marked-up copy and the reply to the referees.">
 <meta property="og:title" content="Paper Trail — an academic work studio">
 <meta property="og:description" content="An academic work studio — from the first note to the proofs: a quiet, Byword-style editor with Zotero citations, pandoc exports through your own templates, a tracker that reads each journal status itself, and a revision desk that builds the marked-up copy and the reply to the referees.">
 <meta property="og:image" content="https://jadamcarter.github.io/paper-trail-releases/icon.png">
@@ -162,15 +162,17 @@
 .theme-dots span{width:15px;height:15px;border-radius:50%;border:1px solid rgba(30,41,59,.18);display:inline-block}
 
   /* ---- the arc of a paper ---- */
-  .arc{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:34px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+  .arc{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin:34px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
   @media(max-width:900px){.arc{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:560px){.arc{grid-template-columns:repeat(2,1fr)}}
-  .arc-s{padding:18px 16px 20px;border-right:1px solid var(--line);position:relative}
+  .arc-s{padding:18px 13px 20px;border-right:1px solid var(--line);position:relative}
   .arc-s:last-child{border-right:0}
   @media(max-width:900px){.arc-s:nth-child(3n){border-right:0}}
   @media(max-width:560px){.arc-s:nth-child(2n){border-right:0}}
   .arc-n{width:9px;height:9px;border-radius:50%;background:var(--blue);display:block;margin-bottom:11px}
-  .arc-s:nth-child(4) .arc-n{background:var(--green)}
+  /* The green dot marks "Waiting" — the app's namesake activity. It moved one
+     along when "Given" was added between the draft and the submission. */
+  .arc-s:nth-child(5) .arc-n{background:var(--green)}
   .arc-s h4{margin:0 0 5px;font-family:var(--sans);font-size:14.5px;font-weight:650;letter-spacing:-.01em}
   .arc-s p{margin:0;font-size:13px;color:var(--slate);line-height:1.5}
   .arc-cap{margin-top:16px;font-size:13.5px;color:var(--faint)}
@@ -198,6 +200,7 @@
     </a>
     <div class="nav-links">
       <a href="#write">Write</a>
+      <a href="#present">Present</a>
       <a href="#send">Send</a>
       <a href="#track">Track</a>
       <a href="#revise">Revise</a>
@@ -213,11 +216,11 @@
     <div>
       <div class="eyebrow">An academic work studio — from the first note to the proofs</div>
       <h1>The whole life of a paper, in one place.</h1>
-      <p class="sub">Write it, send it, wait for it, revise it, resubmit it. Paper Trail is an academic work
-        studio: a quiet editor for the writing itself, a tracker that signs in to your journals and reads each
-        status without being asked, and a revision desk that builds your reply to the referees and the
-        marked-up copy the journal wants. One app, on your own machine, for the parts of the job that nobody
-        teaches you to keep track of.</p>
+      <p class="sub">Write it, give it, send it, wait for it, revise it, resubmit it. Paper Trail is an
+        academic work studio: a quiet editor for the writing itself, slide decks that belong to the talks the
+        paper is given at, a tracker that signs in to your journals and reads each status without being asked,
+        and a revision desk that builds your reply to the referees and the marked-up copy the journal wants.
+        One app, on your own machine, for the parts of the job that nobody teaches you to keep track of.</p>
       <div class="dl-row">
         <a class="dl" id="dlMac" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Mac<small>macOS 12+ · universal</small></a>
         <a class="dl alt" id="dlWin" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows<small>Windows 10+</small></a>
@@ -279,12 +282,13 @@
     <div class="arc">
       <div class="arc-s"><span class="arc-n"></span><h4>An idea</h4><p>A note with citations attached from its first sentence — the paper before it has a name.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>A draft</h4><p>A calm editor that counts words the way your target journal counts them.</p></div>
+      <div class="arc-s"><span class="arc-n"></span><h4>Given</h4><p>The three or four talks it gets before it goes anywhere, each with its own deck.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>Submitted</h4><p>Title page, anonymized copy, and the checks that catch what referees never see.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>Waiting</h4><p>The app signs in and reads the status, so you stop checking dashboards.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>Revising</h4><p>The referees' points, your replies, and a marked-up copy built for you.</p></div>
       <div class="arc-s"><span class="arc-n"></span><h4>In print</h4><p>Proofs, copyright form, online-first — ticked off and dated.</p></div>
     </div>
-    <p class="arc-cap">Everything below is one of those six, in the order it actually happens.</p>
+    <p class="arc-cap">Everything below is one of those seven, in the order it actually happens.</p>
   </div>
 </section>
 <section id="write" class="next">
@@ -300,13 +304,15 @@
         <p>One centred column on warm paper, the markdown marks fading as you type. Typewriter scrolling and a
           focus mode keep the current paragraph under your eyes; ⛶ takes it truly full screen. ⌘B and ⌘I do what
           you expect, lists carry their markers down, ⌥⌘F writes a footnote and renumbers the paper around it —
-          and ⌘Z still reaches back through every one of them. Six committed looks, from warm paper to
-          green-phosphor terminal, each restyling the whole editor.</p>
+          and ⌘Z still reaches back through every one of them. Emphasis shows itself as you write — italics
+          lean, bold thickens, both keeping their marks — and inline maths draws as the symbol it stands for,
+          without a character moving out from under the caret. Fifteen committed looks, from warm paper to
+          green-phosphor terminal by way of Nord, Everforest and Monokai, each restyling the whole editor.</p>
         <div class="mini" aria-hidden="true">
           <div class="dm-doc" style="background:#fbfaf8">
             <div style="color:#a9aeb6"># </div>
             <div style="font-size:13px;color:#191c1f;margin-top:-17px;padding-left:14px">The Shape of the Argument</div>
-            <div class="dm-l" style="color:#3f4348;margin-top:8px">As <span style="color:#3a76c4">@smith2021</span> argues, the regress stops<br>where the <span style="color:#a9aeb6">**</span><span style="color:#191c1f">reasons</span><span style="color:#a9aeb6">**</span> do.<span style="color:#3a76c4">[^1]</span></div>
+            <div class="dm-l" style="color:#3f4348;margin-top:8px">As <span style="color:#3a76c4">@smith2021</span> argues, the regress stops<br>where the <span style="color:#a9aeb6">**</span><span style="color:#191c1f;font-weight:700">reasons</span><span style="color:#a9aeb6">**</span> are <span style="color:#a9aeb6">*</span><span style="color:#191c1f;font-style:italic">basic</span><span style="color:#a9aeb6">*</span>.<span style="color:#3a76c4">[^1]</span></div>
             <div class="dm-l" style="color:#a9aeb6;margin-top:6px">[^1]: <span style="color:#3f4348">Pace the usual reading.</span></div>
           </div>
           <div class="theme-dots">
@@ -316,6 +322,15 @@
             <span title="Terminal" style="background:#090f09"></span>
             <span title="Midnight" style="background:#12151d"></span>
             <span title="Solarized" style="background:#fdf6e3"></span>
+            <span title="Elliot Alderson" style="background:#0a0e0d"></span>
+            <span title="WordStar 4.0" style="background:#000000"></span>
+            <span title="Typora" style="background:#ffffff"></span>
+            <span title="Flexoki" style="background:#fffcf0"></span>
+            <span title="Nord" style="background:#2e3440"></span>
+            <span title="Cobalt2" style="background:#193549"></span>
+            <span title="Everforest" style="background:#272e33"></span>
+            <span title="Monokai" style="background:#272822"></span>
+            <span title="Zenburn" style="background:#383838"></span>
           </div>
         </div>
       </div>
@@ -385,7 +400,56 @@
   </div>
 </section>
 
-<section id="send" class="next tint">
+<section id="present" class="next tint">
+  <div class="wrap">
+    <h2>Present it.</h2>
+    <p class="lede">A philosophy paper is given three or four times before it is sent anywhere, and each outing
+      has its own room, its own hour and its own objection to fold back in. So a deck isn't a separate document
+      that happens to live in the same folder. It belongs to a talk, the talk belongs to the paper, and the app
+      knows all three.</p>
+    <div class="show">
+      <div class="show-col">
+        <div class="tag">Presentations</div>
+        <h3>A deck belongs to a talk</h3>
+        <p>A deck is an ordinary Markdown draft that says <b>kind: slides</b> — same editor, same themes, same
+          citations, same snapshots. It attaches to a <i>talk</i> rather than to the paper, because that is the
+          relation that's actually true: one paper gives three talks, and the deck you built for Sitges isn't
+          superseded when the paper is revised for <i>Mind</i>.</p>
+        <p>Write the deck with the paper open beside it, rendered, scrolling on its own — reaching for the
+          argument shouldn't mean leaving the slide. And when the paper has been edited since you last squared
+          the deck with it, the deck says so, which is the thing you want to know before you stand up rather
+          than during.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="dm-doc" style="background:#fbfaf8">
+            <div class="dm-l" style="color:#6a7076">Sitges — 4 May</div>
+            <div class="dm-l" style="color:#191c1f;font-size:13px;margin-top:2px">Knowing How and the Good Move</div>
+            <div class="dm-l" style="margin-top:8px"><span style="background:#f6ecd7;color:#8a5a1a;padding:2px 7px;border-radius:9px;font-size:11px">● the paper has moved on</span></div>
+          </div>
+          <div class="fmt-row"><span class="fmt">linked to a talk</span><span class="fmt">paper alongside</span><span class="fmt">speaker notes</span></div>
+        </div>
+      </div>
+      <div class="show-col">
+        <div class="tag">The export palette</div>
+        <h3>Nine ways out of one file</h3>
+        <p>Beamer, as a PDF or as the LaTeX to hand a co-author. A handout with the overlays collapsed, two or
+          four to a page. A speaker-notes copy. reveal.js, Slidy and DZSlides for the browser — each built
+          self-contained, so a room with bad wifi doesn't cost you the talk. PowerPoint, on your department's
+          own template if it has one.</p>
+        <p>And the handout academics actually mean: Tufte's, the talk set as prose in a wide margin with the
+          asides beside it. Everything you were only going to <i>say</i> stays out of it.</p>
+        <p>Aspect ratio, type size and the overall look are set once and apply everywhere they can; each format
+          keeps the one control that is genuinely its own. Ask for something a deck can't produce — notes when
+          there are no notes — and it says which, rather than handing you a LaTeX error.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="fmt-row"><span class="fmt">Beamer PDF</span><span class="fmt">Beamer .tex</span><span class="fmt">Handout</span><span class="fmt">Speaker notes</span><span class="fmt">reveal.js</span></div>
+          <div class="fmt-row" style="margin-top:6px"><span class="fmt">Slidy</span><span class="fmt">DZSlides</span><span class="fmt">PowerPoint</span><span class="fmt">Tufte handout</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="send" class="next">
   <div class="wrap">
     <h2>Send it.</h2>
     <p class="lede">Deciding where a paper goes, and getting it out of the door in the shape the journal wants —
@@ -427,7 +491,7 @@
   </div>
 </section>
 
-<section id="track" class="next">
+<section id="track" class="next tint">
   <div class="wrap">
     <h2>Then wait, without checking.</h2>
     <p class="lede">ScholarOne logs you out more or less as a matter of principle, so checking becomes a ritual:
@@ -461,7 +525,7 @@
   </div>
 </section>
 
-<section id="revise" class="next tint">
+<section id="revise" class="next">
   <div class="wrap">
     <h2>Revise it.</h2>
     <p class="lede">A revise-and-resubmit is three documents, not one: the revised paper, a copy with the changes
@@ -513,30 +577,30 @@
   </div>
 </section>
 
-<section id="desk">
+<section id="desk" class="tint">
   <div class="wrap">
     <h2>And the rest of the week.</h2>
-    <p class="lede">Submissions are the visible part of the job and not most of it. Seven tiles sit under your
-      cards, each showing a live count and a quiet warning dot when something is getting close — so a glance at
-      the strip is a glance at the week.</p>
+    <p class="lede">Submissions are the visible part of the job and not most of it. Six tiles sit under your
+      cards in two groups — the things you sit down to do, and the things running to a clock — each with a live
+      count and a quiet warning dot when something is getting close. A glance at the strip is a glance at the
+      week.</p>
     <div class="grid">
       <div class="feat"><div class="tag">Writing</div><h3>Every paper you're writing, one list</h3>
         <p>Start it here and it opens in the built-in editor, or attach a working copy that lives anywhere — a
         file, a folder, an Overleaf link — and it opens in whichever editor you chose. Word counts come off the
         file itself, against the journal you're aiming at. Books run at the same scale: attach the master file
         or the whole project folder, and chapters, contracts and delivery dates sit beside the papers.</p></div>
-      <div class="feat"><div class="tag">In review</div><h3>The trail, one tile up top</h3>
-        <p>The namesake sits second on the strip: a live count of what's under review and the next expected
-        decision, and a click drops you at the Submitted → Decision cards below — the app's own subject, never
-        reachable only by scroll.</p></div>
+      <div class="feat"><div class="tag">Presentations</div><h3>The talks the paper is given at</h3>
+        <p>Every deck you're writing, each showing the talk it belongs to and the paper behind that. Name one
+        and it opens ready to write — a title slide, a pause, and a speaker note, so the shape is there before
+        you are. Nine export formats from the one file, and a deck whose paper has changed since says so.</p></div>
       <div class="feat"><div class="tag">Owed</div><h3>What you owe everyone else</h3>
         <p>Referee reports you've agreed to write, with the journal's own review platform one click away and its
-        deadline in your calendar. And comments owed to colleagues and students: drop their paper in, mark it up
-        in the app's own reader, and email it back with the annotated file attached.</p></div>
-      <div class="feat"><div class="tag">Special issues</div><h3>Issues you're editing</h3>
-        <p>Special issues and edited volumes, where the contribution list is the whole feature: who said yes,
-        who hasn't answered, what's arrived, what's finished — each contributor's deadline beside their name,
-        and the next invitation one chip away.</p></div>
+        deadline in your calendar. Comments owed to colleagues and students: drop their paper in, mark it up in
+        the app's own reader, and email it back with the annotated file attached. And the special issues you're
+        editing, where the contribution list is the whole feature — who said yes, who hasn't answered, what's
+        arrived, what's finished, each contributor's deadline beside their name. Three kinds of debt, one tile,
+        because what they have in common is that somebody is waiting on you.</p></div>
       <div class="feat"><div class="tag">Grants</div><h3>Applications, idea to decision</h3>
         <p>Funder, scheme, deadline, the working copy, the portal — each application a card that moves from idea
         to submitted to a decision, with the deadline written into your calendar like everything else.</p></div>
@@ -551,7 +615,7 @@
   </div>
 </section>
 
-<section id="integrations" class="tint">
+<section id="integrations">
   <div class="wrap">
     <h2>It meets your tools where they are.</h2>
     <p class="lede">A tool like this earns its keep by talking to the things you already trust — your reference
