@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Paper Trail — an academic work studio</title>
-<meta name="description" content="Paper Trail follows a paper from the first sentence to the published record: writing, submission, the wait, the revision, and everything a CV asks for afterwards. For macOS and Windows. Your work stays on your machine." />
+<meta name="description" content="An academic work studio — from the first note to the proofs. Write papers, books and talks; assemble what each journal asks for; know where every submission stands; answer the referees; and keep the record a CV asks for. Free, for macOS and Windows. Your work stays on your machine." />
 <link rel="icon" href="icon.png" />
 <meta property="og:title" content="Paper Trail — an academic work studio" />
-<meta property="og:description" content="The whole life of a paper, in one place. Write it, send it, track it, revise it, and keep the record a CV asks for." />
+<meta property="og:description" content="An academic work studio — from the first note to the proofs. Twelve desks for the whole of academic work, not just the writing." />
 <meta property="og:image" content="icon.png" />
 <meta name="theme-color" content="#2a4b6b" />
 <style>
@@ -21,21 +21,23 @@
                font-weight: 100 700; font-style: normal; font-display: swap; }
 
   /* The app's palette, so the page and the thing it describes are plainly the
-     same object. Light is the ground; dark is defined once, token-level. */
+     same object. The four brand tokens (--accent, --accent-ink, the paper
+     ground, --ok-dot) match renderer/styles.css exactly — see BRAND.md. */
   :root {
     --bg: #eef1f5; --surface: #ffffff; --surface-2: #e8ecf2;
     --ink: #16130d; --muted: #55606e; --faint: #6b7688;
     --line: #e2e7ee; --line-strong: #d2d9e3;
     --accent: #2a4b6b; --accent-ink: #1e3852; --accent-soft: #e6ecf3;
-    --ok-bg: #e7efe4; --ok-ink: #3a6b45;
+    --ok-bg: #e7efe4; --ok-ink: #3a6b45; --ok-dot: #4a8c5a;
     --warn-bg: #f6ecd7; --warn-ink: #8a5a1a;
     --bad-bg: #f5e6e1; --bad-ink: #9c3a2c;
     --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
     --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --shadow-sm: 0 1px 2px rgba(30,41,59,.06);
     --shadow-md: 0 1px 2px rgba(30,41,59,.05), 0 8px 22px rgba(30,41,59,.08);
     --shadow-lg: 0 18px 48px rgba(30,41,59,.18);
     --radius: 13px;
-    --wrap: 1080px;
+    --wrap: 1100px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -43,9 +45,10 @@
       --ink: #eceef2; --muted: #a8b1bd; --faint: #8a94a2;
       --line: #2a3038; --line-strong: #39414c;
       --accent: #7ea6cf; --accent-ink: #a9c6e4; --accent-soft: #1f2b38;
-      --ok-bg: #16281c; --ok-ink: #6bbf82;
+      --ok-bg: #16281c; --ok-ink: #6bbf82; --ok-dot: #5ea973;
       --warn-bg: #2b2313; --warn-ink: #d8a94e;
       --bad-bg: #2f1a15; --bad-ink: #d98a76;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
       --shadow-md: 0 1px 2px rgba(0,0,0,.3), 0 8px 22px rgba(0,0,0,.35);
       --shadow-lg: 0 18px 48px rgba(0,0,0,.5);
     }
@@ -53,149 +56,146 @@
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
     font-family: var(--sans); font-size: 17px; line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
-  a { color: var(--accent-ink); }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; text-wrap: balance; margin: 0; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 22px; }
+  a { color: var(--accent); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
+  h1 { font-size: clamp(34px, 5.2vw, 54px); }
+  h2 { font-size: clamp(27px, 3.6vw, 37px); }
+  h3 { font-size: 20px; }
   p { margin: 0 0 1em; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 12px; top: 12px; background: var(--surface); padding: 10px 14px; border-radius: 8px; z-index: 50; }
 
-  /* ---------- the mark: three bars and a trail of dots, as in the app ---------- */
-  .mark { display: inline-flex; align-items: center; gap: 9px; }
-  .mark svg { display: block; }
-  .mark-name { font-family: var(--serif); font-size: 21px; letter-spacing: -0.01em; }
-  .mark-name b { font-weight: 500; }
+  /* ---------- header ---------- */
+  header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent);
+           backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; gap: 22px; height: 62px; }
+  .mark { display: inline-flex; align-items: center; gap: 10px; color: var(--accent-ink); text-decoration: none; }
+  .mark-name { font-family: var(--serif); font-size: 21px; letter-spacing: -0.01em; white-space: nowrap; }
+  .mark-name b { font-weight: 500; color: var(--ink); }
   .mark-name span { color: var(--accent); }
-
-  header {
-    position: sticky; top: 0; z-index: 20;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: saturate(1.4) blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 13px 0; }
-  .bar nav { display: flex; gap: 22px; align-items: center; font-size: 14px; }
-  .bar nav a { color: var(--muted); text-decoration: none; }
-  .bar nav a:hover { color: var(--ink); }
+  nav { margin-left: auto; display: flex; gap: 20px; font-size: 14.5px; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
   .btn {
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     background: var(--accent); color: #fff; text-decoration: none;
-    padding: 9px 16px; border-radius: 9px; font-size: 14px; font-weight: 600;
-    box-shadow: var(--shadow-md); white-space: nowrap;
+    padding: 10px 17px; border-radius: 9px; font-size: 15px; font-weight: 500;
+    border: 1px solid transparent; box-shadow: var(--shadow-sm); white-space: nowrap;
   }
   .btn:hover { background: var(--accent-ink); }
-  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); box-shadow: none; }
-  .btn.ghost:hover { border-color: var(--accent); color: var(--accent-ink); background: transparent; }
-  @media (max-width: 720px) { .bar nav { display: none; } }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); box-shadow: none; }
+  .btn.ghost:hover { background: var(--surface); }
+  @media (max-width: 860px) { nav { display: none; } }
 
   /* ---------- hero ---------- */
-  .hero { padding: 84px 0 60px; }
-  .hero h1 { font-size: clamp(40px, 6.4vw, 68px); letter-spacing: -0.015em; max-width: 15ch; }
-  .hero .lede {
-    font-family: var(--serif); font-size: clamp(20px, 2.3vw, 25px); line-height: 1.45;
-    color: var(--muted); max-width: 34ch; margin: 22px 0 30px;
-  }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .hero-fine { font-size: 13px; color: var(--faint); margin-top: 14px; }
-  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding: 56px 0 40px; } }
+  .hero { padding: 74px 22px 30px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 52px; align-items: center; }
+  .eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 0 0 14px; }
+  .lede { font-size: 19.5px; color: var(--muted); max-width: 34em; margin-top: 16px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 12px; }
+  .hero-fine { font-size: 14px; color: var(--faint); margin: 0; }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 34px; } .hero { padding-top: 46px; } }
 
-  /* ---------- the card: drawn here, not a screenshot ---------- */
-  .card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden;
+  /* The studio, drawn rather than screenshotted: a rail of desks and the card
+     of a paper somewhere in the middle of its life. */
+  .shot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+          box-shadow: var(--shadow-lg); overflow: hidden; }
+  .shot-top { display: flex; align-items: center; gap: 7px; padding: 10px 13px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
+  .shot-body { display: grid; grid-template-columns: 128px minmax(0, 1fr); min-height: 288px; }
+  .rail { border-right: 1px solid var(--line); padding: 10px 0; background: var(--surface-2); }
+  .rail b { display: block; font: 500 10.5px/1 var(--sans); letter-spacing: .07em; text-transform: uppercase;
+            color: var(--faint); padding: 6px 14px 8px; }
+  .rail i { display: flex; align-items: center; justify-content: space-between; gap: 6px;
+            font-style: normal; font-size: 13px; color: var(--muted); padding: 5.5px 14px; }
+  .rail i.on { background: var(--accent-soft); color: var(--accent-ink); font-weight: 500;
+               box-shadow: inset 2.5px 0 0 var(--accent); }
+  .rail i u { text-decoration: none; font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .pane { padding: 16px 18px; min-width: 0; }
+  /* Narrow: the rail of desks is illustration, the paper is the point. Below
+     this the two together squeeze the card until its right edge is cut off by
+     the frame, so the rail stands down. */
+  @media (max-width: 560px) {
+    .shot-body { grid-template-columns: 1fr; min-height: 0; }
+    .rail { display: none; }
   }
-  .card-top { display: flex; gap: 13px; padding: 16px 18px 12px; }
-  .cover {
-    flex: none; width: 46px; height: 64px; border-radius: 3px;
-    background: linear-gradient(160deg, #f5edb4, #e8dc93); border: 1px solid rgba(0,0,0,.12);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--serif); font-size: 10px; color: #6a5c1e; text-align: center; line-height: 1.15; padding: 4px;
-  }
-  .card-head { min-width: 0; flex: 1; }
-  .card-title { font-family: var(--serif); font-size: 19px; line-height: 1.25; }
-  .card-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 6px; flex: none;
-    padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600;
-    background: var(--warn-bg); color: var(--warn-ink); height: fit-content;
-  }
-  .pill.ok { background: var(--ok-bg); color: var(--ok-ink); }
-  /* The trail: events at their true positions, so the gaps are legible. */
-  .trail { padding: 6px 18px 18px; }
-  .trail-line { position: relative; height: 34px; margin: 8px 0 0; }
-  .trail-line::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 2px;
-    background: var(--line-strong); border-radius: 2px;
-  }
-  .node { position: absolute; top: 3px; width: 14px; height: 14px; border-radius: 50%;
-          background: var(--surface); border: 2px solid var(--accent); transform: translateX(-50%); }
-  .node.soft { border-color: var(--line-strong); }
-  .node.now { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
-  .node span {
-    position: absolute; top: 19px; left: 50%; transform: translateX(-50%);
-    font-size: 11px; color: var(--faint); white-space: nowrap;
-  }
-  .card-foot {
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-    padding: 11px 18px; border-top: 1px solid var(--line); background: var(--surface-2);
-    font-size: 12px; color: var(--muted);
-  }
-  .chip { padding: 3px 9px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; background: var(--surface); }
+  .card h4 { margin: 0 0 3px; font-family: var(--serif); font-size: 19px; font-weight: 500; }
+  .card .sub { font-size: 12.5px; color: var(--faint); margin-bottom: 11px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { font-size: 11.5px; padding: 2.5px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+  .chip.ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .chip.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .trail { display: flex; align-items: center; gap: 0; margin: 4px 0 10px; }
+  .trail s { flex: 1; height: 2px; background: var(--line-strong); text-decoration: none; }
+  .trail em { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); flex: none; }
+  .trail em.done { background: var(--accent); }
+  .trail em.now { background: var(--ok-dot); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok-dot) 26%, transparent); }
+  .stage { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--faint); }
+  .meta { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 11px; padding-top: 9px; }
 
   /* ---------- sections ---------- */
-  section { padding: 68px 0; border-top: 1px solid var(--line); }
-  .kicker {
-    font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 14px;
-  }
-  h2 { font-size: clamp(29px, 3.7vw, 40px); letter-spacing: -0.012em; max-width: 20ch; }
-  .say { font-size: 18px; color: var(--muted); max-width: 60ch; margin-top: 16px; }
+  section { padding: 66px 0; border-top: 1px solid var(--line); }
+  .sec-head { max-width: 40em; margin-bottom: 34px; }
+  .sec-head p { color: var(--muted); margin-top: 12px; }
+  .kicker { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
 
-  /* The spine: a paper's life, stage by stage. */
-  .stages { margin-top: 46px; display: grid; gap: 0; }
-  .stage {
-    display: grid; grid-template-columns: 190px 1fr; gap: 34px;
-    padding: 30px 0; border-top: 1px dashed var(--line-strong);
-  }
-  .stage:first-child { border-top: none; }
-  .stage-when { position: relative; }
-  .stage-when b { font-family: var(--serif); font-size: 23px; font-weight: 500; display: block; }
-  .stage-when i { font-style: normal; font-size: 13px; color: var(--faint); }
-  .stage h3 { font-size: 21px; margin-bottom: 8px; }
-  .stage p { color: var(--muted); max-width: 62ch; margin-bottom: 12px; }
-  .did { display: flex; flex-wrap: wrap; gap: 7px; }
-  .did span {
-    font-size: 12.5px; padding: 4px 11px; border-radius: 999px;
-    background: var(--surface); border: 1px solid var(--line); color: var(--muted);
-  }
-  @media (max-width: 780px) { .stage { grid-template-columns: 1fr; gap: 12px; } }
+  /* the twelve desks */
+  .desks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .desk { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 17px 18px; }
+  .desk h3 { font-family: var(--sans); font-size: 15.5px; font-weight: 600; margin-bottom: 6px; letter-spacing: 0; }
+  .desk p { font-size: 14.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+  @media (max-width: 900px) { .desks { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .desks { grid-template-columns: 1fr; } }
 
-  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 20px; margin-top: 40px; }
-  .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
-  .box h3 { font-size: 20px; margin-bottom: 9px; }
-  .box p { font-size: 15.5px; color: var(--muted); margin: 0; }
+  /* the arc */
+  .arc { display: grid; gap: 18px; }
+  .step { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 28px; background: var(--surface);
+          border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; }
+  .step-when { font-family: var(--serif); font-size: 21px; color: var(--accent); }
+  .step-when small { display: block; font-family: var(--sans); font-size: 12px; letter-spacing: .07em;
+                     text-transform: uppercase; color: var(--faint); margin-top: 5px; }
+  .step h3 { margin-bottom: 8px; }
+  .step p { color: var(--muted); margin-bottom: 12px; }
+  .step p:last-child { margin-bottom: 0; }
+  @media (max-width: 780px) { .step { grid-template-columns: 1fr; gap: 12px; } }
 
-  .privacy { background: var(--surface); }
-  .privacy .box { background: var(--bg); }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
+  .fact { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+  .fact b { display: block; font-family: var(--serif); font-size: 27px; font-weight: 500; color: var(--accent); }
+  .fact span { font-size: 13.5px; color: var(--muted); }
+  @media (max-width: 780px) { .facts { grid-template-columns: repeat(2, 1fr); } }
 
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 780px) { .two { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; }
+  .panel h3 { margin-bottom: 10px; }
+  .panel p { color: var(--muted); }
+  .panel ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 15.5px; }
+  .panel li { margin-bottom: 7px; }
+
+  /* download */
   .get { text-align: center; }
-  .get h2 { margin: 0 auto; }
-  .get .say { margin: 16px auto 30px; }
-  .dl { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .dl-fine { font-size: 13px; color: var(--faint); margin-top: 18px; }
+  .get .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 26px 0 16px; }
+  .req { font-size: 14px; color: var(--faint); }
+  .req code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
 
-  footer { padding: 40px 0 60px; border-top: 1px solid var(--line); font-size: 14px; color: var(--faint); }
-  .foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
-  .foot a { color: var(--muted); text-decoration: none; margin-left: 18px; }
-  .foot a:hover { color: var(--accent-ink); }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  footer { border-top: 1px solid var(--line); padding: 34px 0 54px; color: var(--faint); font-size: 14px; }
+  .foot { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+  .foot a { color: var(--muted); }
+  .foot .sp { margin-left: auto; }
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Skip to content</a>
 
 <header>
   <div class="wrap bar">
@@ -204,16 +204,19 @@
         <rect x="0" y="3" width="17" height="2.6" rx="1.3" fill="currentColor"/>
         <rect x="0" y="9.7" width="13" height="2.6" rx="1.3" fill="currentColor"/>
         <rect x="0" y="16.4" width="17" height="2.6" rx="1.3" fill="currentColor"/>
-        <circle cx="21.5" cy="11" r="1.9" fill="#2a4b6b"/>
-        <circle cx="25.5" cy="11" r="1.9" fill="#2a4b6b" opacity=".62"/>
-        <circle cx="29" cy="11" r="1.9" fill="#4a8c5a"/>
+        <!-- The dots ARE the "Trail" (BRAND.md), so they take the accent token
+             rather than a literal navy: hard-coded, they went nearly invisible
+             against the dark header. The leader is always the green. -->
+        <circle cx="21.5" cy="11" r="1.9" fill="var(--accent)"/>
+        <circle cx="25.5" cy="11" r="1.9" fill="var(--accent)" opacity=".62"/>
+        <circle cx="29" cy="11" r="1.9" fill="var(--ok-dot)"/>
       </svg>
       <span class="mark-name"><b>Paper</b> <span>Trail</span></span>
     </a>
     <nav>
-      <a href="#life">A paper's life</a>
-      <a href="#desks">The other desks</a>
-      <a href="#record">The record</a>
+      <a href="#desks">The desks</a>
+      <a href="#arc">A paper's life</a>
+      <a href="#writing">Writing</a>
       <a href="#privacy">Your data</a>
     </nav>
     <a class="btn" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download</a>
@@ -221,282 +224,206 @@
 </header>
 
 <a id="top"></a>
+<main id="main">
+
 <div class="wrap hero">
   <div class="hero-grid">
     <div>
-      <h1>The whole life of a paper, in one place.</h1>
-      <p class="lede">Write it, send it, forget about it — and be told when something actually happens.</p>
+      <p class="eyebrow">An academic work studio — from the first note to the proofs</p>
+      <h1>Academic work is not one job. It shouldn't be twelve apps.</h1>
+      <p class="lede">Write the paper, send it where it belongs, know where it stands, answer the referees — and keep the record of everything else a career actually consists of. One studio, twelve desks, your own files.</p>
       <div class="hero-cta">
         <a class="btn" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for macOS</a>
-        <a class="btn ghost" href="#life">See what it does</a>
+        <a class="btn ghost" href="#desks">See what it does</a>
       </div>
-      <p class="hero-fine">Free. macOS and Windows. Your papers never leave your computer.</p>
+      <p class="hero-fine">Free. macOS and Windows. Your work never leaves your computer.</p>
     </div>
 
-    <!-- Drawn here in HTML, not a screenshot: no real paper, no real journal,
-         no real person. -->
-    <div class="card" role="img" aria-label="A paper's card: On Knowing How, under review, with its trail of events.">
-      <div class="card-top">
-        <span class="cover">Journal of Philosophy</span>
-        <span class="card-head">
-          <span class="card-title">On Knowing How to Continue</span>
-          <span class="card-sub">Journal of Philosophy · with R. Ellis</span>
-        </span>
-        <span class="pill">Under review</span>
-      </div>
-      <div class="trail">
-        <div class="trail-line">
-          <i class="node soft" style="left:2%"><span>submitted</span></i>
-          <i class="node" style="left:31%"><span>with editor</span></i>
-          <i class="node" style="left:58%"><span>out to review</span></i>
-          <i class="node now" style="left:88%"><span>day 74</span></i>
+    <div class="shot" aria-label="An illustration of the app: a rail of desks beside a paper part-way through review">
+      <div class="shot-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="shot-body">
+        <div class="rail" aria-hidden="true">
+          <b>Desks</b>
+          <i>Today</i>
+          <i>Writing <u>4</u></i>
+          <i class="on">In review <u>3</u></i>
+          <i>Owed <u>2</u></i>
+          <i>Reading <u>11</u></i>
+          <i>Grants</i>
+          <i>Editorial</i>
+          <i>Service</i>
         </div>
-      </div>
-      <div class="card-foot">
-        <span class="chip">8,140 words</span>
-        <span class="chip">decision expected ~3 weeks</span>
-        <span class="chip">2 referees agreed</span>
+        <div class="pane">
+          <div class="card">
+            <h4>On Knowing How to Continue</h4>
+            <div class="sub">Journal of Philosophy · submitted 11 May</div>
+            <div class="trail" aria-hidden="true">
+              <em class="done"></em><s></s><em class="done"></em><s></s><em class="now"></em><s></s><em></em>
+            </div>
+            <div class="stage"><span>submitted</span><span>with editor</span><span>out to review</span><span>decision</span></div>
+            <div class="chips" style="margin-top:12px">
+              <span class="chip ok">2 referees agreed</span>
+              <span class="chip">day 74</span>
+              <span class="chip warn">slower than usual here</span>
+            </div>
+            <div class="meta">Last read 14 minutes ago. This journal's median to first decision: 61 days.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<section id="life">
-  <div class="wrap">
-    <div class="kicker">A paper's life</div>
-    <h2>A paper doesn't end at "submitted".</h2>
-    <p class="say">Most tools help with one stage and lose interest at the next. Paper Trail follows the
-      whole arc — and the parts nobody builds for are the parts it takes most seriously.</p>
-
-    <div class="stages">
-      <div class="stage">
-        <div class="stage-when"><b>Write it</b><i>the months nobody sees</i></div>
-        <div>
-          <h3>An editor that knows what a paper is</h3>
-          <p>Plain Markdown files in your own folder — nothing locked in a database. Type <b>@</b> to cite
-            straight from Zotero. Cut a paragraph you can't quite bin and it waits in a drawer beside the
-            paper. Keep the plan, the objections and the seminar's pushback in a notebook that opens next
-            to the prose. Hear it read back to you before you send it.</p>
-          <div class="did">
-            <span>@-citations from Zotero</span><span>the cuts drawer</span><span>a notebook per paper</span>
-            <span>read it aloud</span><span>argument checking</span><span>versions of every save</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="stage">
-        <div class="stage-when"><b>Send it</b><i>one afternoon, done properly</i></div>
-        <div>
-          <h3>The submission pack, built for you</h3>
-          <p>Pick the journal and it assembles what that journal asks for: the anonymised manuscript in
-            every format required, a separate title page, the house citation style, the publisher's own
-            LaTeX class where one exists. It checks the word limit under the journal's own counting rule
-            before you go anywhere near the portal.</p>
-          <div class="did">
-            <span>PDF · Word · HTML · LaTeX</span><span>anonymised for blind review</span>
-            <span>journal house styles</span><span>title pages</span><span>cover letters</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="stage">
-        <div class="stage-when"><b>Then wait</b><i>the bit that eats your attention</i></div>
-        <div>
-          <h3>It checks the portals so you stop checking them</h3>
-          <p>Paper Trail signs in to the journal's system and reads the status itself, quietly, several
-            times an hour. You are told when something changes — not invited to go and look. Each paper
-            keeps a trail of what happened and when, so three weeks of silence looks like three weeks of
-            silence, and you can see how long this journal usually takes.</p>
-          <div class="did">
-            <span>reads ScholarOne, Editorial Manager and more</span><span>expected decision dates</span>
-            <span>a trail per paper</span><span>logins kept in your Keychain</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="stage">
-        <div class="stage-when"><b>Revise it</b><i>where the real work is</i></div>
-        <div>
-          <h3>A desk for the revision</h3>
-          <p>The referees' points become a checklist you answer one at a time, so nothing is quietly
-            skipped. It keeps the version you submitted alongside the one you are writing and builds the
-            "changes marked" copy the journal asks for — the document everyone otherwise assembles by
-            hand at midnight.</p>
-          <div class="did">
-            <span>referee points, ticked off</span><span>the marked-up copy, generated</span>
-            <span>the reply to referees</span><span>the deadline, watched</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="stage">
-        <div class="stage-when"><b>Publish it</b><i>and the clock nobody remembers</i></div>
-        <div>
-          <h3>Proofs, deposit, and the open-access deadline</h3>
-          <p>Acceptance starts a second, quieter set of obligations: proofs to return, a repository
-            deposit with a hard deadline attached to it. Paper Trail counts those days for you and says
-            so before they run out, because that one is not recoverable afterwards.</p>
-          <div class="did">
-            <span>proofs tracked</span><span>the deposit clock</span><span>DOI, volume, pages</span>
-            <span>citations, counted quietly</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ---------------------------------------------------------------- desks -->
 <section id="desks">
   <div class="wrap">
-    <div class="kicker">The other desks</div>
-    <h2>And the rest of the week.</h2>
-    <p class="say">Your own papers are perhaps a third of the job. The rest has no home anywhere else.</p>
-    <div class="cols">
-      <div class="box">
-        <h3>Refereeing</h3>
-        <p>The reports you owe, with their deadlines, the manuscript to hand, and the review written and
-          kept right there. A yearly tally for when someone asks what you did.</p>
-      </div>
-      <div class="box">
-        <h3>Editing</h3>
-        <p>If you edit a journal, it walks your queues and shows each manuscript with its referees — who
-          agreed, who declined, who is overdue and by how many days. No guessing, no clicking through.</p>
-      </div>
-      <div class="box">
-        <h3>Reading for others</h3>
-        <p>Comments you owe a colleague or a student: their draft, annotated in the app, sent back by
-          email. The part of the year that otherwise leaves no record at all.</p>
-      </div>
-      <div class="box">
-        <h3>Grants</h3>
-        <p>Applications with their funders, deadlines, co-applicants and portals — and the papers that
-          came out of the money, linked back to it.</p>
-      </div>
-      <div class="box">
-        <h3>Books</h3>
-        <p>A monograph is not a long paper. Chapters, a delivery date, and whole-book export through
-          Quarto in a proper book design.</p>
-      </div>
-      <div class="box">
-        <h3>Talks &amp; slides</h3>
-        <p>Where you are speaking and when, the deck written beside the paper it came from, and what they
-          said afterwards.</p>
-      </div>
+    <div class="sec-head">
+      <p class="kicker">The studio</p>
+      <h2>Twelve desks, because the job has twelve parts.</h2>
+      <p>Most tools take the writing seriously and lose interest at "submitted". The parts nobody builds for — the waiting, the reports you owe other people, the committee you sat on in March — are the parts that go missing when the annual review asks. Each desk is one of those parts, and each one tells you what is waiting on you.</p>
+    </div>
+    <div class="desks">
+      <div class="desk"><h3>Today</h3><p>The sentence you walked away from, what arrived while you were gone, and the day's demands worst first. When there is nothing, it steps aside.</p></div>
+      <div class="desk"><h3>Writing</h3><p>Papers in progress — plain Markdown in your own folder, or a working copy anywhere on disk. Word counts against the journal you are aiming at.</p></div>
+      <div class="desk"><h3>Books</h3><p>Longer projects, rendered whole. Chapter word counts, a delivery date, and the publisher you owe it to.</p></div>
+      <div class="desk"><h3>Talks</h3><p>Slide decks written as prose and exported as Beamer, reveal.js, PowerPoint, Slidy, DZSlides or a Tufte handout — each deck linked to the paper it came from.</p></div>
+      <div class="desk"><h3>Reading</h3><p>Everything you haven't read yet, across every paper and every report — ordered by which deadline needs it first.</p></div>
+      <div class="desk"><h3>Plan</h3><p>Where next? Word limits, typical speed and acceptance rates side by side, so choosing a venue is a decision rather than a guess.</p></div>
+      <div class="desk"><h3>In review</h3><p>Everything you have sent out, with the Submitted → Decision trail and how long this journal usually takes.</p></div>
+      <div class="desk"><h3>Owed</h3><p>Referee reports and comments on colleagues' and students' work — the reading other people are waiting on, with the dates you promised.</p></div>
+      <div class="desk"><h3>Editorial</h3><p>The journals and special issues you edit: invitations out, pieces overdue, what is waiting on you rather than on someone else.</p></div>
+      <div class="desk"><h3>Grants</h3><p>Applications you are writing and ones you are waiting to hear about, with the documents each is written in kept alongside.</p></div>
+      <div class="desk"><h3>Service</h3><p>Vivas, tenure letters, committees, the conference you ran. One line as it happens, and by the end of the year the CV section is already written.</p></div>
+      <div class="desk"><h3>Notes</h3><p>A scratch pad that is always there, and a notebook per paper for the plan, the objections and the seminar's pushback.</p></div>
     </div>
   </div>
 </section>
 
-<section id="record">
+<!-- ------------------------------------------------------------------ arc -->
+<section id="arc">
   <div class="wrap">
-    <div class="kicker">The record</div>
-    <h2>December's forms, already written.</h2>
-    <p class="say">Every year the same request arrives in a different shape: an annual review, a promotion
-      case, a REF return, a funder's conflict-of-interest list. All of it is work you already did.</p>
-    <div class="cols">
-      <div class="box">
-        <h3>Your year, in prose</h3>
-        <p>Submissions, decisions, refereeing, editing, the drafts you read for other people — written out
-          as sentences you can paste into the form.</p>
+    <div class="sec-head">
+      <p class="kicker">A paper's life</p>
+      <h2>From the first note to the proofs.</h2>
+      <p>The same paper, all the way through. Nothing is re-typed at the hand-offs, because there are no hand-offs.</p>
+    </div>
+
+    <div class="arc">
+      <div class="step" id="writing">
+        <div class="step-when">Write it<small>the months nobody sees</small></div>
+        <div>
+          <h3>An editor that knows what a paper is</h3>
+          <p>Plain Markdown files in your own folder — nothing locked in a database, nothing that stops opening if this app does. Type <code>@</code> to cite straight from your Zotero library. Cut a paragraph you can't quite bin and it waits in a drawer beside the paper. Bring a manuscript over from Word and its pictures come with it.</p>
+          <p>Sixteen looks for the writing surface, from a plain sheet to a green phosphor terminal; a typewriter mode; an outline rail; find-and-replace that leaves your hands where they are; and hourly snapshots of every paper, so "what did that paragraph say yesterday" has an answer.</p>
+        </div>
       </div>
-      <div class="box">
-        <h3>The publication list</h3>
-        <p>A formatted bibliography, BibTeX, or a spreadsheet. Bring in everything you published before
-          you started, from ORCID or a BibTeX file, and it covers your whole career.</p>
+
+      <div class="step">
+        <div class="step-when">Send it<small>one afternoon, done properly</small></div>
+        <div>
+          <h3>The submission pack, assembled for you</h3>
+          <p>Pick the journal and the app puts together what that journal actually asks for: the anonymised manuscript in each required format, a separate title page, the house citation style, and the publisher's own LaTeX class where one exists. It checks your abstract and word count against the journal's own stated limits before you go near the portal.</p>
+          <p>It knows the house style of <strong>54 journals</strong>. Exports to PDF, Word, HTML, LaTeX and PowerPoint, and twelve typeset looks of its own for the copy you read yourself.</p>
+        </div>
       </div>
-      <div class="box">
-        <h3>Service, remembered</h3>
-        <p>The viva in March, the tenure letter in June, the committee you sit on. Ten seconds to write
-          down, and the December form fills itself.</p>
+
+      <div class="step">
+        <div class="step-when">Then wait<small>the bit that eats your attention</small></div>
+        <div>
+          <h3>It checks the portals so you stop checking them</h3>
+          <p>Paper Trail signs in to the journal's system and reads the status itself, quietly, through the day. You are told when something changes — not invited to go and look. It reads ScholarOne and Editorial Manager sites, and journals that publish no status at all can be tracked by hand.</p>
+          <p>Every paper keeps a trail of what happened and when, so three weeks of silence looks like three weeks of silence — and beside it, how long this journal usually takes. Your logins are kept in the system Keychain and used nowhere else.</p>
+        </div>
       </div>
-      <div class="box">
-        <h3>Collaborators</h3>
-        <p>The recent-collaborator list funders ask for, worked out from your co-authors, co-applicants
-          and the issues you edited.</p>
+
+      <div class="step">
+        <div class="step-when">Revise it<small>where the real work is</small></div>
+        <div>
+          <h3>A desk for the revision</h3>
+          <p>The referees' points become a checklist you answer one at a time, so nothing is quietly skipped. It keeps the version you submitted alongside the one you are writing, and builds the "changes marked" copy the journal asks for — the document that is a chore to make by hand and obvious when it is missing.</p>
+          <p>When the reply is written, the response-to-referees letter is assembled from the answers you already gave.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-when">Keep it<small>what a career is made of</small></div>
+        <div>
+          <h3>The record, written as it happens</h3>
+          <p>Published papers keep their citation counts, checked against open indexes. Every referee report, viva, tenure letter, committee and conference goes down in one line at the time — and at the end of the year the section of the annual review that normally takes an afternoon of archaeology is already written.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- -------------------------------------------------------------- numbers -->
 <section>
   <div class="wrap">
-    <div class="kicker">Your tools</div>
-    <h2>It meets your tools where they are.</h2>
-    <div class="cols">
-      <div class="box">
-        <h3>Zotero</h3>
-        <p>Cite with <b>@</b> as you write. Read papers in Zotero's own reader, where your highlights
-          belong — then pull those highlights into the draft as quotations, with their page.</p>
+    <div class="facts">
+      <div class="fact"><b>54</b><span>journals whose house style it knows — formats, limits, citation style, the class file</span></div>
+      <div class="fact"><b>5</b><span>export formats: PDF, Word, HTML, LaTeX, PowerPoint</span></div>
+      <div class="fact"><b>12</b><span>typeset looks for your own copy, on top of every journal's own</span></div>
+      <div class="fact"><b>0</b><span>of your papers that leave your computer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- privacy -->
+<section id="privacy">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Your data</p>
+      <h2>It is your work, on your machine.</h2>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <h3>Where things live</h3>
+        <ul>
+          <li>Your drafts are plain Markdown files in your own folder. Open them in anything; delete this app and they are still there.</li>
+          <li>Everything the app tracks sits in one readable file on your disk. If you keep it in iCloud Drive, your own Macs sync it; nobody else's does.</li>
+          <li>Journal logins go in the system Keychain, encrypted by the OS, and are used only to sign in to that journal.</li>
+          <li>There is no account, no sign-up and no server holding your papers.</li>
+        </ul>
       </div>
-      <div class="box">
-        <h3>Your calendar</h3>
-        <p>Revision deadlines, expected decisions and ready-by dates written into the calendar you already
-          look at, so they reach your phone.</p>
-      </div>
-      <div class="box">
-        <h3>GitHub</h3>
-        <p>Optional: every save of every draft committed and pushed to a private repository you own. The
-          full history of your writing, safe off the machine.</p>
-      </div>
-      <div class="box">
-        <h3>Plain files</h3>
-        <p>Your drafts are Markdown in your own folder, syncing through iCloud like everything else. If
-          you stopped using Paper Trail tomorrow, every paper would still be there.</p>
+      <div class="panel">
+        <h3>What leaves, and when</h3>
+        <ul>
+          <li>Signing in to a journal talks to that journal. Looking up a DOI talks to the open citation indexes. Nothing else goes out on its own.</li>
+          <li>Optionally, you can back your drafts up to a private GitHub repository of your own — off unless you set it up.</li>
+          <li>Optionally, you can contribute one anonymous record when a paper reaches a decision, so figures like "median days to first decision" come from real submissions rather than folklore. Off by default; it carries no name, no title and no manuscript ID.</li>
+        </ul>
+        <p style="margin:14px 0 0"><a href="privacy.html">The full privacy notice →</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="privacy" class="privacy">
-  <div class="wrap">
-    <div class="kicker">Your data</div>
-    <h2>Your work stays on your machine.</h2>
-    <p class="say">This is a tool for unpublished research and confidential peer review, so the default had
-      to be the strict one.</p>
-    <div class="cols">
-      <div class="box">
-        <h3>No account, no server</h3>
-        <p>There is nothing to sign up for. Your papers, drafts and notes live in your own folders and are
-          never uploaded anywhere by the app.</p>
-      </div>
-      <div class="box">
-        <h3>Journal logins stay local</h3>
-        <p>Saved sign-ins are encrypted by your operating system's own keychain and used only to talk to
-          that journal, from your computer.</p>
-      </div>
-      <div class="box">
-        <h3>Nothing shared unless you ask</h3>
-        <p>You can opt in to contributing anonymous decision timings — a journal, an outcome, a rounded
-          number of days. Never a title, never a name. It is off until you turn it on.</p>
-      </div>
+<!-- ------------------------------------------------------------- download -->
+<section id="get">
+  <div class="wrap get">
+    <h2>Get Paper Trail</h2>
+    <p style="color:var(--muted);max-width:32em;margin:14px auto 0">Free, and there is nothing to sign up for. It updates itself when there is something worth updating to.</p>
+    <div class="btns">
+      <a class="btn" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for macOS</a>
+      <a class="btn ghost" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows</a>
     </div>
-    <p class="say" style="margin-top:26px">
-      <a href="privacy.html">Read the privacy note →</a>
+    <p class="req">
+      macOS 12 or later, Apple silicon and Intel in one download · Windows 10 or later.<br />
+      Exporting to PDF needs <a href="https://pandoc.org/installing.html">pandoc</a> and a LaTeX engine; the app will tell you if either is missing.<br />
+      Citing from your library needs <a href="https://www.zotero.org/">Zotero</a> with <a href="https://retorque.re/zotero-better-bibtex/">Better BibTeX</a>.
     </p>
   </div>
 </section>
 
-<section class="get">
-  <div class="wrap">
-    <h2>Get Paper Trail</h2>
-    <p class="say">Free, and yours to keep. It updates itself when there's something new.</p>
-    <div class="dl">
-      <a class="btn" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for macOS</a>
-      <a class="btn ghost" href="https://github.com/jadamcarter/paper-trail-releases/releases/latest">Download for Windows</a>
-    </div>
-    <p class="dl-fine">Always the current release. macOS 11 or later · Windows 10 or later.<br />
-      The macOS build isn't signed by Apple yet, so the first launch needs
-      <b>right-click → Open</b>.</p>
-  </div>
-</section>
+</main>
 
 <footer>
   <div class="wrap foot">
-    <span>Paper Trail — written by J. Adam Carter, University of Glasgow.</span>
-    <span>
-      <a href="https://github.com/jadamcarter/paper-trail-releases/releases">All releases</a>
-      <a href="https://github.com/jadamcarter/paper-trail-releases/issues">Report a problem</a>
-      <a href="privacy.html">Privacy</a>
-    </span>
+    <span>Paper Trail — an academic work studio.</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="https://github.com/jadamcarter/paper-trail-releases/releases">Release notes</a>
+    <a href="https://github.com/jadamcarter/paper-trail-releases/issues">Report a problem</a>
+    <span class="sp">Made for people who would rather be writing.</span>
   </div>
 </footer>
 

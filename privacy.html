@@ -63,7 +63,7 @@
 
 <main>
   <h1>Privacy Notice</h1>
-  <p class="dated">Last updated 12 July 2026 · applies to the Paper Trail desktop app and this website</p>
+  <p class="dated">Last updated 14 September 2026 · applies to the Paper Trail desktop app and this website</p>
 
   <div class="summary">
     <p><strong>The short version.</strong> Paper Trail keeps your data on your machine. There's no account, no analytics, and no server of ours holding your manuscripts or submission history. Paper Trail does not send your manuscript titles, manuscript IDs, co-author names, journal statuses or journal passwords to us. The app communicates directly with journal websites to retrieve information. Our download, update and community-statistics providers may receive ordinary technical connection data, as explained below.</p>
@@ -76,6 +76,8 @@
   <ul>
     <li><strong>Your tracked papers</strong>: titles, journals, co-authors, statuses, submission dates, downloaded manuscripts and journal covers. These are stored in the app's local data folder and nowhere else. Deleting the app's data removes them.</li>
     <li><strong>Your journal logins</strong>: encrypted into the operating system's secure storage (the Mac Keychain, or the Windows equivalent). They are used only to sign in to the journals you choose, from your computer. We never receive them and could not read them if we wanted to.</li>
+    <li><strong>Everything you write</strong>: drafts, books, slide decks, notebooks and the snapshots of earlier versions are ordinary files in a folder you can open, move or delete without this app. They are never uploaded anywhere by default.</li>
+    <li><strong>Your reference library</strong>: when you cite with <code>@</code>, the app asks Zotero on your own machine, over a local connection that never leaves it. Your library is not copied to us or to anyone else.</li>
   </ul>
 
   <h2>What leaves your machine, and to whom</h2>
@@ -83,18 +85,22 @@
     <li><strong>Journal websites.</strong> When you add a paper or click Refresh, the app connects to the relevant journal's submission system directly from your computer, exactly as your browser would, using the login you provided. That traffic goes between you and the journal; it does not pass through us.</li>
     <li><strong>GitHub (downloads and updates).</strong> The installers are hosted on GitHub, and the app checks GitHub for new versions. GitHub receives ordinary connection data (your IP address, user agent and the request) under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</li>
     <li><strong>Publisher pages (covers and journal statistics).</strong> The app fetches journal cover images and published acceptance/wait-time figures from publisher websites. Those sites receive ordinary connection data from your machine.</li>
+    <li><strong>Citation indexes (OpenAlex and Crossref).</strong> To find a paper's DOI, or to count how often a published paper has been cited, the app queries these open scholarly indexes. It sends the title or the DOI of the paper being looked up, and nothing about you. Neither service requires an account or an API key.</li>
+    <li><strong>Apple iCloud Drive, if you use it.</strong> Paper Trail keeps your drafts and its own data file in a Paper Trail folder inside your Documents or, where you have it, iCloud Drive — which is what lets your own Macs see the same work. Where that folder is in iCloud, Apple stores and syncs those files for you under Apple's own terms, exactly as it would for any other document. Nothing is sent to us.</li>
+    <li><strong>Your own GitHub repository, only if you set it up.</strong> You can ask the app to keep a running backup of your drafts in a private repository belonging to you. It is off unless you turn it on, the repository and the access token are yours, and we never see either.</li>
+    <li><strong>Your calendar, only if you connect one.</strong> With your permission the app writes submission deadlines, referee dates and grant dates into a calendar you choose, on your machine. If that calendar is itself synced by Apple, Google or your employer, those entries go wherever that calendar already goes.</li>
     <li><strong>Community statistics (only if you opt in).</strong> Described in full in the next section. The receiving service runs on Cloudflare, which processes ordinary connection data under <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</li>
   </ul>
   <p>That's the complete list. The app contains no analytics, no crash reporting and no advertising identifiers.</p>
 
   <h2>Community statistics (opt-in)</h2>
   <p>Paper Trail can contribute to shared journal statistics, so that figures like "median days to first decision" come from real submissions rather than folklore. This is off by default. If, and only if, you switch it on, the app sends one record when a tracked paper reaches a decision. The record, in full:</p>
-  <div class="rec"><code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-07","app":"0.2.2"}</code></div>
+  <div class="rec"><code>{"v":1,"journal":"mind","outcome":"rejected","daysToDecision":165,"month":"2026-09","app":"0.65.0"}</code></div>
   <p>It carries no name, no manuscript title, no manuscript ID and no precise dates: days are rounded, and only the month is kept. The record is anonymous when it leaves your machine, and the receiving service stores nothing about the request itself; there is no account or identifier to tie a record to a person. Aggregated figures are only ever published once enough records exist for a journal that no individual submission could be picked out.</p>
   <p>You can switch community contributions off at any time; this prevents all future contributions. Once a record has been transmitted and irreversibly anonymised, we cannot identify it as yours and therefore cannot retrieve or delete it individually. Because the records are anonymous, they are not personal data under the UK and EU GDPR; consent in the app is asked for all the same, because we think you should decide.</p>
 
   <h2>This website</h2>
-  <p>This site is hosted on GitHub Pages, which receives ordinary connection data when you visit. The site itself sets no cookies and runs no analytics. The download buttons query GitHub's public API from your browser to find the latest version.</p>
+  <p>This site is hosted on GitHub Pages, which receives ordinary connection data when you visit. The site itself sets no cookies, runs no analytics and contains no JavaScript at all; its typefaces are served from this domain rather than from a font service, so loading the page contacts nobody but GitHub. The download buttons are ordinary links to the releases page.</p>
 
   <h2>Your rights</h2>
   <p>Under the UK and EU GDPR you have rights of access, rectification, erasure, restriction, portability and objection over personal data we hold about you. In practice we hold almost none: your papers and logins are on your machine, under your control, and the community records are anonymous. If you email us, we'll hold your correspondence for as long as the conversation needs. You can also complain to the Information Commissioner's Office (ICO) or your local supervisory authority.</p>
